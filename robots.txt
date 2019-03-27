@@ -1,0 +1,4 @@
+Sitemap: https://juanrodriguezmonti.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: juanrodriguezmonti.github.io
