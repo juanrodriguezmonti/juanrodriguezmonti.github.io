@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/2016/07/05/autopython/</loc>
+    <lastmod>2016-07-05T06:24:22-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/page/about/</loc>
+    <lastmod>2016-06-28T16:00:05-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</loc>
+    <lastmod>2016-06-28T15:51:10-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/2016/06/28/newblog/</loc>
+    <lastmod>2016-06-28T15:51:07-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/</loc>
+    <lastmod>2016-07-05T06:24:22-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/tags/learning/</loc>
+    <lastmod>2016-06-28T15:51:10-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/page/</loc>
+    <lastmod>2016-06-28T16:00:05-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/post/</loc>
+    <lastmod>2016-07-05T06:24:22-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/tags/programming/</loc>
+    <lastmod>2016-06-28T15:51:10-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/tags/python/</loc>
+    <lastmod>2016-06-28T15:51:10-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://juanrodriguezmonti.github.io/tags/</loc>
+    <lastmod>2016-06-28T15:51:10-03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
