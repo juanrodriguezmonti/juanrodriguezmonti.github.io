@@ -41,5 +41,23 @@ I&amp;rsquo;m open to new adventures, jobs and ideas. Feel free to reach me at r
 Thanks!</description>
     </item>
     
+    <item>
+      <title>Talks</title>
+      <link>https://juanrodriguezmonti.github.io/page/talks/</link>
+      <pubDate>Fri, 28 Jun 2002 15:51:10 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/page/talks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>New title</title>
+      <link>https://juanrodriguezmonti.github.io/page/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/page/test/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
