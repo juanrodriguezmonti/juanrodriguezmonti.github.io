@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/page/</link>
+    <description>Recent content in Pages on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <lastBuildDate>Mon, 09 Jul 2018 16:57:05 -0300</lastBuildDate>
+    
+	<atom:link href="https://juanrodriguezmonti.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About me!</title>
+      <link>https://juanrodriguezmonti.github.io/page/about/</link>
+      <pubDate>Mon, 09 Jul 2018 16:57:05 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/page/about/</guid>
+      <description>I&amp;rsquo;m Juan Rodríguez Monti. I&amp;rsquo;m from Argentina. I&amp;rsquo;m a programmer.
+I like, in no specific order, Algorithms, Python, Data Structures, Maths, Machine Learning, Music, Philosophy, Books, Fútbol.
+I&amp;rsquo;m open to new adventures ! Feel free to contact me for new jobs, conferences, or (whatever-reason) you want.
+You can reach me at rmontijuan &amp;lsquo;@&amp;rsquo; gmail &amp;lsquo;.&amp;rsquo; com !</description>
+    </item>
+    
+  </channel>
+</rss>

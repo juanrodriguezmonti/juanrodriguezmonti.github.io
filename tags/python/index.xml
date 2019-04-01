@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/tags/python/</link>
+    <description>Recent content in Python on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <lastBuildDate>Tue, 17 Jul 2018 20:05:11 -0300</lastBuildDate>
+    
+	<atom:link href="https://juanrodriguezmonti.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Big O Algorithm Complexity Cheatsheet for common data structures</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</link>
+      <pubDate>Tue, 17 Jul 2018 20:05:11 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</guid>
+      <description>Big O Cheatsheet Complexity Efficiency of stacks, queues, linked lists, doubly linked lists, and more data structures when inserting, deleting and searching Big O notation is defined by Wikipedia as a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann,[1] Edmund Landau,[2] and others, collectively called Bachmann–Landau notation or asymptotic notation.</description>
+    </item>
+    
+    <item>
+      <title>Things to know before you start programming</title>
+      <link>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</link>
+      <pubDate>Tue, 28 Jun 2016 15:51:10 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</guid>
+      <description>Some days ago, I was reading Guido Van Rossum&amp;rsquo;s Google Plus Page, and I found a link that he shared under this description &amp;laquo;I was so impressed with this I am posting it to G+ and tweeting it &amp;laquo;. As I admire a lot this guy, because he is the creator of the greatest programming language ever existed, I inmediately opened it. The story is about the things and warnings you should know before you start programming, under the title; Things I Wish Someone Had Told Me When I Was Learning How to Code.</description>
+    </item>
+    
+  </channel>
+</rss>

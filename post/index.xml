@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/post/</link>
+    <description>Recent content in Posts on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <lastBuildDate>Fri, 27 Jul 2018 02:35:05 -0300</lastBuildDate>
+    
+	<atom:link href="https://juanrodriguezmonti.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pan artesanal / Artisan Bread</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/27/artisan-bread/</link>
+      <pubDate>Fri, 27 Jul 2018 02:35:05 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/27/artisan-bread/</guid>
+      <description>Pan artesanal / Artisan Bread Hago pan hace muchos ańos. Creo que fue una de las primeras recetas que comence a hacer cuando aprendi a cocinar.
+Quienes me conocen saben que me gusta cocinar, que detesto la pasteleria, y que amo hacer panes y pizzas.
+Con el paso del tiempo fui haciendo panes, partiendo desde una receta básica de masa de pizza apenas modificada, hasta sofisticadas recetas de Sourdough Bread que fracasaron miserablemente.</description>
+    </item>
+    
+    <item>
+      <title>Big O Algorithm Complexity Cheatsheet for common data structures</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</link>
+      <pubDate>Tue, 17 Jul 2018 20:05:11 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</guid>
+      <description>Big O Cheatsheet Complexity Efficiency of stacks, queues, linked lists, doubly linked lists, and more data structures when inserting, deleting and searching Big O notation is defined by Wikipedia as a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann,[1] Edmund Landau,[2] and others, collectively called Bachmann–Landau notation or asymptotic notation.</description>
+    </item>
+    
+    <item>
+      <title>Automatic deploy method for your site made with Hugo content generator</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/09/deployhugo/</link>
+      <pubDate>Mon, 09 Jul 2018 19:18:34 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/09/deployhugo/</guid>
+      <description>I use since some years Hugo as my static site generator. I like it a lot, it is fast, reliable, open source, with an amazing community and works perfectly well.
+After you setup the site, you just create content, make the new content and upload it to your server.
+You make the content available to the site with hugo , you serve the content to test it locally with hugo server, then you need to deploy the site.</description>
+    </item>
+    
+    <item>
+      <title>Newblogagain</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/09/newblogagain/</link>
+      <pubDate>Mon, 09 Jul 2018 16:59:00 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/09/newblogagain/</guid>
+      <description>Once again I&amp;rsquo;m making a new blog. The previous &amp;lsquo;New blog&amp;rsquo; blog was about two years ago.
+In the middle many adventures, ideas, books, conferences, code, gadgets and other stuff of my interest happened.
+Now, new blog, using the same static generator written in Go as before, to create it ( Hugo ), with new theme and some ideas.
+I hope in this brand new &amp;lsquo;New blog&amp;rsquo; I could reach what I would like to complete now.</description>
+    </item>
+    
+    <item>
+      <title>Things to know before you start programming</title>
+      <link>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</link>
+      <pubDate>Tue, 28 Jun 2016 15:51:10 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</guid>
+      <description>Some days ago, I was reading Guido Van Rossum&amp;rsquo;s Google Plus Page, and I found a link that he shared under this description &amp;laquo;I was so impressed with this I am posting it to G+ and tweeting it &amp;laquo;. As I admire a lot this guy, because he is the creator of the greatest programming language ever existed, I inmediately opened it. The story is about the things and warnings you should know before you start programming, under the title; Things I Wish Someone Had Told Me When I Was Learning How to Code.</description>
+    </item>
+    
+    <item>
+      <title>New blog</title>
+      <link>https://juanrodriguezmonti.github.io/2016/06/28/newblog/</link>
+      <pubDate>Tue, 28 Jun 2016 15:51:07 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2016/06/28/newblog/</guid>
+      <description>This is my new blog. Im gonna put here some stuff that I&amp;rsquo;ve written some time ago, and - hopefully - Im gonna complete it with brand new stuff, too.
+Thanks!</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recetas on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/tags/recetas/</link>
+    <description>Recent content in Recetas on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <lastBuildDate>Fri, 27 Jul 2018 02:35:05 -0300</lastBuildDate>
+    
+	<atom:link href="https://juanrodriguezmonti.github.io/tags/recetas/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pan artesanal / Artisan Bread</title>
+      <link>https://juanrodriguezmonti.github.io/2018/07/27/artisan-bread/</link>
+      <pubDate>Fri, 27 Jul 2018 02:35:05 -0300</pubDate>
+      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <guid>https://juanrodriguezmonti.github.io/2018/07/27/artisan-bread/</guid>
+      <description>Pan artesanal / Artisan Bread Hago pan hace muchos ańos. Creo que fue una de las primeras recetas que comence a hacer cuando aprendi a cocinar.
+Quienes me conocen saben que me gusta cocinar, que detesto la pasteleria, y que amo hacer panes y pizzas.
+Con el paso del tiempo fui haciendo panes, partiendo desde una receta básica de masa de pizza apenas modificada, hasta sofisticadas recetas de Sourdough Bread que fracasaron miserablemente.</description>
+    </item>
+    
+  </channel>
+</rss>

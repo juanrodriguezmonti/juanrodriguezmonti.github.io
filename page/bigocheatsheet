@@ -1,0 +1,17 @@
+---
+title: "BigOCheatsheet"
+date: 2018-07-17T20:05:11-03:00
+draft: false
+tags: ["Python", "Data Structures", "Algorithms"]
+---
+
+Big O Cheatsheet
+================
+
+*Efficiency of stacks, queues, linked lists, doubly linked lists, and more data
+structures when inserting, deleting and searching*
+
+One of the most common things to learn and study when learning Data Structures
+are efficiency in worst and average case of the algorithm.
+
+This is defined using the Big O Cheatsheet.
