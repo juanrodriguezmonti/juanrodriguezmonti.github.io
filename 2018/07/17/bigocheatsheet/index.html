@@ -418,7 +418,7 @@ class Queue():
 
     @property
     def front(self):
-        #assert not self.is_empty(), 'Empty queue'
+        assert not self.is_empty(), 'Empty queue'
         return self._front.value
 
 
