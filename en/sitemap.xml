@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>https://juanrodriguezmonti.github.io/page/talks/</loc>
+    <lastmod>2018-07-09T16:57:05-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</loc>
     <lastmod>2016-06-28T15:51:10-03:00</lastmod>
   </url>
@@ -35,10 +40,6 @@
   <url>
     <loc>https://juanrodriguezmonti.github.io/2016/06/28/newblog/</loc>
     <lastmod>2016-06-28T15:51:07-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://juanrodriguezmonti.github.io/page/talks/</loc>
   </url>
   
   <url>
@@ -56,11 +57,6 @@
   <url>
     <loc>https://juanrodriguezmonti.github.io/tags/bread/</loc>
     <lastmod>2018-07-27T02:35:05-03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://juanrodriguezmonti.github.io/tags/conferences/</loc>
     <priority>0</priority>
   </url>
   

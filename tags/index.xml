@@ -8,7 +8,7 @@
     <language>en</language>
     <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
     <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
-    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <copyright>(c) 2006 - 2019 Copyright my blog</copyright>
     <lastBuildDate>Tue, 17 Jul 2018 20:05:11 -0300</lastBuildDate>
     
 	<atom:link href="https://juanrodriguezmonti.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -38,15 +38,6 @@
       <pubDate>Fri, 27 Jul 2018 02:35:05 -0300</pubDate>
       <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
       <guid>https://juanrodriguezmonti.github.io/tags/bread/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Conferences</title>
-      <link>https://juanrodriguezmonti.github.io/tags/conferences/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
-      <guid>https://juanrodriguezmonti.github.io/tags/conferences/</guid>
       <description></description>
     </item>
     

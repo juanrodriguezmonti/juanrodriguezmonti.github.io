@@ -8,7 +8,7 @@
     <language>en</language>
     <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
     <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
-    <copyright>(c) 2006 - 2018 Copyright my blog</copyright>
+    <copyright>(c) 2006 - 2019 Copyright my blog</copyright>
     <lastBuildDate>Tue, 17 Jul 2018 20:05:11 -0300</lastBuildDate>
     
 	<atom:link href="https://juanrodriguezmonti.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
@@ -30,16 +30,6 @@
       <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
       <guid>https://juanrodriguezmonti.github.io/2016/06/28/thingstoknowbeforeyoustartprogramming/</guid>
       <description>Some days ago, I was reading Guido Van Rossum&amp;rsquo;s Google Plus Page, and I found a link that he shared under this description &amp;laquo;I was so impressed with this I am posting it to G+ and tweeting it &amp;laquo;. As I admire a lot this guy, because he is the creator of the greatest programming language ever existed, I inmediately opened it. The story is about the things and warnings you should know before you start programming, under the title; Things I Wish Someone Had Told Me When I Was Learning How to Code.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://juanrodriguezmonti.github.io/page/talks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
-      <guid>https://juanrodriguezmonti.github.io/page/talks/</guid>
-      <description>My talks Algunas de las charlas que he dado en el ultimo tiempo
-Introduccion a PyQt - PyConEs 2015 - Universidad de Almeria - Almeria Haciendo eventos Python con Python - PyConEs 2015 - Universidad de Almeria - Almeria Introduccion a Django - 2011 - FLISOL PERGAMINO - UNNOBA Software Libre en la empresa - 2008 - FLISOL PERGAMINO - UNNOBA</description>
     </item>
     
   </channel>
