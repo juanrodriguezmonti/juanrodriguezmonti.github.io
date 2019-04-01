@@ -6,9 +6,9 @@
     <description>Recent content in Pages on Juan Rodriguez Monti Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
-    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
-    <copyright>(c) 2006 - 2019 Copyright my blog</copyright>
+    <managingEditor>rmontijuan en gmail punto com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan en gmail punto com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2019 - Copyright Juan Rodríguez Monti - All Rights Reserved</copyright>
     <lastBuildDate>Mon, 09 Jul 2018 16:57:05 -0300</lastBuildDate>
     
 	<atom:link href="https://juanrodriguezmonti.github.io/page/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,7 @@
       <title>About me!</title>
       <link>https://juanrodriguezmonti.github.io/page/about/</link>
       <pubDate>Mon, 09 Jul 2018 16:57:05 -0300</pubDate>
-      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <author>rmontijuan en gmail punto com (Juan Rodriguez Monti)</author>
       <guid>https://juanrodriguezmonti.github.io/page/about/</guid>
       <description>I&amp;rsquo;m Juan Rodríguez Monti. I&amp;rsquo;m from Argentina. I&amp;rsquo;m a programmer.
 I like, in no specific order, Algorithms, Python, Data Structures, Maths, Machine Learning, Music, Philosophy, Books, Fútbol.
@@ -30,7 +30,7 @@ You can reach me at rmontijuan &amp;lsquo;@&amp;rsquo; gmail &amp;lsquo;.&amp;rs
       <title>my talks</title>
       <link>https://juanrodriguezmonti.github.io/page/talks/</link>
       <pubDate>Mon, 09 Jul 2018 16:57:05 -0300</pubDate>
-      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <author>rmontijuan en gmail punto com (Juan Rodriguez Monti)</author>
       <guid>https://juanrodriguezmonti.github.io/page/talks/</guid>
       <description> Some of my latest talks  Introduccion a PyQt - PyConEs 2015 - Almeria - Universidad de Almeria Eventos Python usando Python - PyConEs 2015 - Almeria - Universidad de Almeria Introduccion al framework web Django - 2009 - FLISOL PERGAMINO - UNNOBA Software Libre en la empresa - 2008 - FLISOL PERGAMINO - UNNOBA  </description>
     </item>

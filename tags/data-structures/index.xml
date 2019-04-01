@@ -6,9 +6,9 @@
     <description>Recent content in Data Structures on Juan Rodriguez Monti Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>rmontijuan@gmail.com (Juan Rodriguez Monti)</managingEditor>
-    <webMaster>rmontijuan@gmail.com (Juan Rodriguez Monti)</webMaster>
-    <copyright>(c) 2006 - 2019 Copyright my blog</copyright>
+    <managingEditor>rmontijuan en gmail punto com (Juan Rodriguez Monti)</managingEditor>
+    <webMaster>rmontijuan en gmail punto com (Juan Rodriguez Monti)</webMaster>
+    <copyright>(c) 2006 - 2019 - Copyright Juan Rodríguez Monti - All Rights Reserved</copyright>
     <lastBuildDate>Tue, 17 Jul 2018 20:05:11 -0300</lastBuildDate>
     
 	<atom:link href="https://juanrodriguezmonti.github.io/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,7 @@
       <title>Big O Algorithm Complexity Cheatsheet for common data structures</title>
       <link>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</link>
       <pubDate>Tue, 17 Jul 2018 20:05:11 -0300</pubDate>
-      <author>rmontijuan@gmail.com (Juan Rodriguez Monti)</author>
+      <author>rmontijuan en gmail punto com (Juan Rodriguez Monti)</author>
       <guid>https://juanrodriguezmonti.github.io/2018/07/17/bigocheatsheet/</guid>
       <description>Big O Cheatsheet Complexity Efficiency of stacks, queues, linked lists, doubly linked lists, and more data structures when inserting, deleting and searching Big O notation is defined by Wikipedia as a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann,[1] Edmund Landau,[2] and others, collectively called Bachmann–Landau notation or asymptotic notation.</description>
     </item>
