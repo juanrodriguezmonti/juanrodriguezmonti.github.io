@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/</link>
+    <description>Recent content on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2016 - 2022 - Copyright Juan Rodriguez Monti All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 16 Jan 2022 19:12:26 -0300</lastBuildDate><atom:link href="https://juanrodriguezmonti.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Art_creation_with_python</title>
+      <link>https://juanrodriguezmonti.github.io/post/art_creation_with_python/</link>
+      <pubDate>Sun, 16 Jan 2022 19:12:26 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/art_creation_with_python/</guid>
+      <description>Art creation with Python, Machine Learning and Language Processing During the time that I spent on the weekend reading about new things and stuff that I consider awesome, I dive into an interesting and emerging field of AI which is Images and Art Creation.
+To be more specific, I started to work with models that create images, pixel art, and art, and I found it incredible.
+Some work performed here is related to upcoming academic works, so this is half for fun and half academic related stuff.</description>
+    </item>
+    
+    <item>
+      <title>Big O Algorithm Complexity Cheatsheet for common data structures</title>
+      <link>https://juanrodriguezmonti.github.io/post/bigocheatsheet/</link>
+      <pubDate>Tue, 17 Jul 2018 20:05:11 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/bigocheatsheet/</guid>
+      <description>Big O Cheatsheet Complexity Efficiency of stacks, queues, linked lists, doubly linked lists, and more data structures when inserting, deleting and searching Big O notation is defined by Wikipedia as a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann,[1] Edmund Landau,[2] and others, collectively called Bachmann–Landau notation or asymptotic notation.</description>
+    </item>
+    
+    <item>
+      <title>Automatic deploy method for your site made with Hugo content generator</title>
+      <link>https://juanrodriguezmonti.github.io/post/deployhugo/</link>
+      <pubDate>Mon, 09 Jul 2018 19:18:34 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/deployhugo/</guid>
+      <description>I use since some years Hugo as my static site generator. I like it a lot, it is fast, reliable, open source, with an amazing community and works perfectly well.
+After you setup the site, you just create content, make the new content and upload it to your server.
+You make the content available to the site with hugo , you serve the content to test it locally with hugo server, then you need to deploy the site.</description>
+    </item>
+    
+    <item>
+      <title>Newblogagain</title>
+      <link>https://juanrodriguezmonti.github.io/post/newblogagain/</link>
+      <pubDate>Mon, 09 Jul 2018 16:59:00 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/newblogagain/</guid>
+      <description>Once again I&amp;rsquo;m making a new blog. The previous &amp;lsquo;New blog&amp;rsquo; blog was about two years ago.
+In the middle many adventures, ideas, books, conferences, code, gadgets and other stuff of my interest happened.
+Now, new blog, using the same static generator written in Go as before, to create it ( Hugo ), with new theme and some ideas.
+I hope in this brand new &amp;lsquo;New blog&amp;rsquo; I could reach what I would like to complete now.</description>
+    </item>
+    
+    <item>
+      <title>About me!</title>
+      <link>https://juanrodriguezmonti.github.io/page/about/</link>
+      <pubDate>Mon, 09 Jul 2018 16:57:05 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/page/about/</guid>
+      <description>I&amp;rsquo;m Juan Rodríguez Monti. I&amp;rsquo;m from Argentina. I&amp;rsquo;m a programmer.
+I like, in no specific order, Algorithms, Python, Data Structures, Maths, Machine Learning, Music, Philosophy, Books, Fútbol.
+Feel free to contact me for new jobs, conferences, or (whatever-reason) you want.
+You can reach me at rmontijuan &amp;lsquo;@&amp;rsquo; gmail &amp;lsquo;.&amp;rsquo; com !</description>
+    </item>
+    
+    <item>
+      <title>my talks</title>
+      <link>https://juanrodriguezmonti.github.io/page/talks/</link>
+      <pubDate>Mon, 09 Jul 2018 16:57:05 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/page/talks/</guid>
+      <description>Some of my latest talks  Introduccion a PyQt - PyConEs 2015 - Almeria - Universidad de Almeria Eventos Python usando Python - PyConEs 2015 - Almeria - Universidad de Almeria Introduccion al framework web Django - 2009 - FLISOL PERGAMINO - UNNOBA Software Libre en la empresa - 2008 - FLISOL PERGAMINO - UNNOBA  </description>
+    </item>
+    
+    <item>
+      <title>Things to know before you start programming</title>
+      <link>https://juanrodriguezmonti.github.io/post/thingstoknowbeforeyoustartprogramming/</link>
+      <pubDate>Tue, 28 Jun 2016 15:51:10 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/thingstoknowbeforeyoustartprogramming/</guid>
+      <description>Some days ago, I was reading Guido Van Rossum&amp;rsquo;s Google Plus Page, and I found a link that he shared under this description &amp;ldquo;I was so impressed with this I am posting it to G+ and tweeting it &amp;ldquo;. As I admire a lot this guy, because he is the creator of the greatest programming language ever existed, I inmediately opened it. The story is about the things and warnings you should know before you start programming, under the title; Things I Wish Someone Had Told Me When I Was Learning How to Code.</description>
+    </item>
+    
+    <item>
+      <title>New blog</title>
+      <link>https://juanrodriguezmonti.github.io/post/newblog/</link>
+      <pubDate>Tue, 28 Jun 2016 15:51:07 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/newblog/</guid>
+      <description>This is my new blog. Im gonna put here some stuff that I&amp;rsquo;ve written some time ago, and - hopefully - Im gonna complete it with brand new stuff, too.
+Thanks!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://juanrodriguezmonti.github.io/md/art-creation-with-python-machine-learning-and-lan-c4b19aaa31f44f338e3f39bb2cb25c99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/md/art-creation-with-python-machine-learning-and-lan-c4b19aaa31f44f338e3f39bb2cb25c99/</guid>
+      <description>Art creation with Python, Machine Learning and Language Processing During the time that I spent on the weekend reading about new things and stuff that I consider awesome, I dive into an interesting and emerging field of AI which is Images and Art Creation.
+To be more specific, I started to work with models that create images, pixel art, and art, and I found it incredible.
+Some work performed here is related to upcoming academic works, so this is half for fun and half academic related stuff.</description>
+    </item>
+    
+  </channel>
+</rss>
