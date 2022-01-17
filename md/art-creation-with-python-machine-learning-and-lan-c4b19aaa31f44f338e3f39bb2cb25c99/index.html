@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>  | Juan Rodriguez Monti Blog</title>
+  <link rel = 'canonical' href = 'https://juanrodriguezmonti.github.io/md/art-creation-with-python-machine-learning-and-lan-c4b19aaa31f44f338e3f39bb2cb25c99/'>
+  <meta name="description" content="I am Juan Rodriguez Monti. I am a Software Developer. I write code. I love coding and algorithms. Between my interests are, in no order, Python, Algorithms, Processing of huge datasets, Machine Learning, Data Structures, NLP, Synthetic Music and Art creation, and more. I am working now as a Senior Backend Software Developer and University Professor of Data Structures and Computer Sciences. Besides Algorithms and Programming, I&#39;m an avid reader, a Pianist, I love cooking, Nintendo, and travelling. ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="" />
+<meta property="og:description" content="Art creation with Python, Machine Learning and Language Processing During the time that I spent on the weekend reading about new things and stuff that I consider awesome, I dive into an interesting and emerging field of AI which is Images and Art Creation.
+To be more specific, I started to work with models that create images, pixel art, and art, and I found it incredible.
+Some work performed here is related to upcoming academic works, so this is half for fun and half academic related stuff." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://juanrodriguezmonti.github.io/md/art-creation-with-python-machine-learning-and-lan-c4b19aaa31f44f338e3f39bb2cb25c99/" /><meta property="article:section" content="md" />
+
+
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Art creation with Python, Machine Learning and Language Processing During the time that I spent on the weekend reading about new things and stuff that I consider awesome, I dive into an interesting and emerging field of AI which is Images and Art Creation.
+To be more specific, I started to work with models that create images, pixel art, and art, and I found it incredible.
+Some work performed here is related to upcoming academic works, so this is half for fun and half academic related stuff."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://juanrodriguezmonti.github.io/css/styles.94f653e9e151e28067a7c5dbbc4600cbd5a3c721e79faaf971e523c40f3b249b8e4f20bb57810dfffa8d559ca5c140fd56eb4cd9c0853113ad08e66afdb08bdd.css" integrity="sha512-lPZT6eFR4oBnp8XbvEYAy9WjxyHnn6r5ceUjxA87JJuOTyC7V4EN//qNVZylwUD9VutM2cCFMROtCOZq/bCL3Q=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://juanrodriguezmonti.github.io/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+    <header id="header">
+  <a href="https://juanrodriguezmonti.github.io">
+  
+    <div id="logo" style="background-image: url(https://juanrodriguezmonti.github.io/images/logo.png)"></div>
+  
+  <div id="title">
+    <h1>Juan Rodriguez Monti Blog</h1>
+  </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x" aria-hidden="true"></i></a>
+      </li>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/post">Writings</a></li>
+      
+        <li><a href="/tags">Tags</a></li>
+      
+        <li><a href="page/about">About</a></li>
+      
+        <li><a href="page/talks">Talks</a></li>
+      
+    </ul>
+  </div>
+</header>
+
+
+
+    
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <div class="content" itemprop="articleBody">
+  
+    <h1 id="art-creation-with-python-machine-learning-and-language-processing">Art creation with Python, Machine Learning and Language Processing</h1>
+<p>During the time that I spent on the weekend reading about new things and stuff that I consider awesome, I dive into an interesting and emerging field of AI which is Images and Art Creation.</p>
+<p>To be more specific, I started to work with models that create images, pixel art, and art, and I found it incredible.</p>
+<p>Some work performed here is related to upcoming academic works, so this is half for fun and half academic related stuff.</p>
+<p>I discovered algorithms and software that is fascinating, so I wanted to make a brief entry in my blog about them.</p>
+<h1 id="dalle-creating-images-from-text">DALL·E: Creating Images from Text</h1>
+<p>DALL·E is a 12-billion parameter version of <a href="https://arxiv.org/abs/2005.14165">GPT-3</a>, created by OpenAI, trained to generate images from text descriptions, using a dataset of text–image pairs. We’ve found that it has a diverse set of capabilities, including creating anthropomorphized versions of animals and objects, combining unrelated concepts in plausible ways, rendering text, and applying transformations to existing images.</p>
+<p>All this is pretty impressive, let’s see a little bit more about DALL-E. In the next pictures you can check images automatically generated with DALL-E :</p>
+<p><img src="Art%20creation%20with%20Python,%20Machine%20Learning%20and%20Lan%20c4b19aaa31f44f338e3f39bb2cb25c99/Untitled.png" alt="Untitled"></p>
+<p>As we can see, entering some descriptive text the software will generate images. But, not easy images or easy flows like “draw a cat” and the resulting animal, in this case the Model supports really advanced features like being able to draw an armchair in the shape of an avocado.</p>
+<p>DALL·E is a transformer language model. It receives both the text and the image as a single stream of data containing up to 1280 tokens, and is trained using maximum likelihood to generate all of the tokens, one after another. This training procedure allows DALL·E to not only generate an image from scratch, but also to regenerate any rectangular region of an existing image that extends to the bottom-right corner, in a way that is consistent with the text prompt.</p>
+<p>As the creators says, the work involving generative models has the potential for significant, broad societal impacts. Even, they expect to analyze how models like DALL·E relate to societal issues like economic impact on certain work processes and professions, the potential for bias in the model outputs, and the longer term ethical challenges implied by this technology.</p>
+<p>DALL·E is able to create plausible images for a great variety of sentences that explore the compositional structure of language.</p>
+<p><strong>Support for multiple objects</strong></p>
+<p>DALL-E Model is able to work with multiple objects. Controlling multiple objects, their attributes, and their spatial relationships presents a challenge. For example, consider the phrase “a hedgehog wearing a red hat, yellow gloves, blue shirt, and green pants.” To correctly interpret this sentence, DALL·E must not only correctly compose each piece of apparel with the animal, but also form the associations (hat, red), (gloves, yellow), (shirt, blue), and (pants, green) without mixing them up. We test DALL·E’s ability to do this for relative positioning, stacking objects, and controlling multiple attributes.</p>
+<p>Let’s see some of the proposed examples</p>
+<p><img src="Art%20creation%20with%20Python,%20Machine%20Learning%20and%20Lan%20c4b19aaa31f44f338e3f39bb2cb25c99/Untitled%201.png" alt="Untitled"></p>
+<h3 id="combining-unrelated-concepts"><strong>Combining Unrelated Concepts</strong></h3>
+<p>The compositional nature of language allows us to put together concepts to describe both real and imaginary things. We find that DALL·E also has the ability to combine disparate ideas to synthesize objects, some of which are unlikely to exist in the real world. We explore this ability in two instances: transferring qualities from various concepts to animals, and designing products by taking inspiration from unrelated concepts.</p>
+<p><img src="Art%20creation%20with%20Python,%20Machine%20Learning%20and%20Lan%20c4b19aaa31f44f338e3f39bb2cb25c99/Untitled%202.png" alt="Untitled"></p>
+<p>DALL-E supports many advanced features like that we are going to analyze in the part 2 of this article like; <strong>Visualizing Perspective and Three-Dimensionality, Visualizing Internal and External Structure, Inferring Contextual Details.</strong></p>
+<p>The model of DALL-E was released in a similar a piece of software called CLIP or Contrastive Image-Language Pretraining. Clip is able to evaluate and qualify images, seeing if the image matches properly a given a text.</p>
+<p>The approach used actually is to combine both to create a software qualified enough to score a given image created by Wall-e or another piece of software like <a href="https://compvis.github.io/taming-transformers/">VQGAN</a> (Vector Quantized GAN) that will be qualified by CLIP.</p>
+<p>Some of this kind of software is not released for the big public, alternatives like clip or vqgan let us try and use this kind technology openly, even when some pieces of OpenAI are not disclosed yet, or are released partially or for some group of people. An interesting approach, that I love, is that almost everything in the AI field is fully or partially released under friendly licenses that everyone can use. More on this later.</p>
+<h2 id="combining-an-imagen-generator-with-clip">Combining an imagen generator with CLIP</h2>
+<p>All kind of things we can creeate and explore with this technologies. We can use complex pieces of text as input, and even we can use audio as input or output in this fascinating world of AI. In a next article Im going to explore the creation of bach like or baroque music with Python and Machine Learning. Let’s get back to art generation.</p>
+<h2 id="pixray-and-google-collab">Pixray and Google Collab</h2>
+<p>You might be thinking that all this wonderful state of the art technology is amazing but difficult to use because it needs strong GPU power and expensive hardware.</p>
+<p>This is real, but now with the amazing power of Google Collab, you can use a GPU as a Service ( a joke ) but it is what it is. Google Collab gives the power of GPU on the cloud, and you can use it free for an interesting amount of required resources.</p>
+<p>So, it is possible to explore all this from a laptop or any kind of actual machine, which is amazing.</p>
+<h2 id="pixray">Pixray</h2>
+<p>You can use this repo of Collab engine, that is now used to host Google Colab notebooks which demostrate various pixray capabilities.</p>
+<p>To illustrate how easy is to start using this engine, as it is explained here <a href="https://towardsdatascience.com/how-i-built-an-ai-text-to-art-generator-a0c0f6d6f59f">https://towardsdatascience.com/how-i-built-an-ai-text-to-art-generator-a0c0f6d6f59f</a></p>
+<p>Using python and a few lines of code, in this case with the previous clipit now migrated under the name of pixray, you can start the flow to start iterations to create from language processing and incredible piece of art like the one we show in the last part of the article. This is just the beginning, we are going to explore deeply more things in the second part of this article that is coming next week.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#ff79c6">**</span><span style="color:#ff79c6">import</span> sys
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>sys<span style="color:#ff79c6">.</span>path<span style="color:#ff79c6">.</span>append(<span style="color:#f1fa8c">&#34;clipit&#34;</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span style="color:#ff79c6">import</span> clipit
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span style="color:#6272a4"># To reset settings to default</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span>clipit<span style="color:#ff79c6">.</span>reset_settings()
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span style="color:#6272a4"># You can use &#34;|&#34; to separate multiple prompts</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span>prompts <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;underwater city&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span style="color:#6272a4"># You can trade off speed for quality: draft, normal, better, best</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span>quality <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;normal&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span style="color:#6272a4"># Aspect ratio: widescreen, square</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span>aspect <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;widescreen&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span style="color:#6272a4"># Add settings</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span>clipit<span style="color:#ff79c6">.</span>add_settings(prompts<span style="color:#ff79c6">=</span>prompts, quality<span style="color:#ff79c6">=</span>quality, aspect<span style="color:#ff79c6">=</span>aspect)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span style="color:#6272a4"># Apply these settings and run</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span>settings <span style="color:#ff79c6">=</span> clipit<span style="color:#ff79c6">.</span>apply_settings()
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span>clipit<span style="color:#ff79c6">.</span>do_init(settings)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span>cliptit<span style="color:#ff79c6">.</span>do_run(settings)<span style="color:#ff79c6">**</span>
+</code></pre></div><p>Resultating images created synthetically with Python and the technologies I explained here.</p>
+<p><img src="Art%20creation%20with%20Python,%20Machine%20Learning%20and%20Lan%20c4b19aaa31f44f338e3f39bb2cb25c99/Untitled%203.png" alt="Untitled"></p>
+<p><img src="Art%20creation%20with%20Python,%20Machine%20Learning%20and%20Lan%20c4b19aaa31f44f338e3f39bb2cb25c99/Untitled%204.png" alt="Untitled"></p>
+<p>Bibliography and resources</p>
+<p><a href="https://openai.com/blog/dall-e/">https://openai.com/blog/dall-e</a></p>
+<p><a href="https://github.com/dribnet/pixray">https://github.com/dribnet/pixray</a></p>
+<p><a href="https://compvis.github.io/taming-transformers/">https://compvis.github.io/taming-transformers/</a></p>
+<p><a href="https://towardsdatascience.com/how-i-built-an-ai-text-to-art-generator-a0c0f6d6f59f">https://towardsdatascience.com/how-i-built-an-ai-text-to-art-generator-a0c0f6d6f59f</a></p>
+<p><a href="https://ljvmiranda921.github.io/notebook/2021/08/08/clip-vqgan/">https://ljvmiranda921.github.io/notebook/2021/08/08/clip-vqgan/</a></p>
+<p><a href="https://github.com/dribnet/clipit">https://github.com/dribnet/clipit</a></p>
+
+  
+  </div>
+</article>
+
+
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  2016 - 2022 - Copyright Juan Rodriguez Monti All Rights Reserved 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/post">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="page/about">About</a></li>
+         
+        <li><a href="page/talks">Talks</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+</html>
