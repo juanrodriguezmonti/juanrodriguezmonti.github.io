@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Structures on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/tags/data-structures/</link>
+    <description>Recent content in Data Structures on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2016 - 2022 - Copyright Juan Rodriguez Monti All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 17 Jul 2018 20:05:11 -0300</lastBuildDate><atom:link href="https://juanrodriguezmonti.github.io/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Big O Algorithm Complexity Cheatsheet for common data structures</title>
+      <link>https://juanrodriguezmonti.github.io/post/bigocheatsheet/</link>
+      <pubDate>Tue, 17 Jul 2018 20:05:11 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/bigocheatsheet/</guid>
+      <description>Big O Cheatsheet Complexity Efficiency of stacks, queues, linked lists, doubly linked lists, and more data structures when inserting, deleting and searching Big O notation is defined by Wikipedia as a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. It is a member of a family of notations invented by Paul Bachmann,[1] Edmund Landau,[2] and others, collectively called Bachmann–Landau notation or asymptotic notation.</description>
+    </item>
+    
+  </channel>
+</rss>

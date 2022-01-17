@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deploy on Juan Rodriguez Monti Blog</title>
+    <link>https://juanrodriguezmonti.github.io/tags/deploy/</link>
+    <description>Recent content in Deploy on Juan Rodriguez Monti Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2016 - 2022 - Copyright Juan Rodriguez Monti All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 09 Jul 2018 19:18:34 -0300</lastBuildDate><atom:link href="https://juanrodriguezmonti.github.io/tags/deploy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatic deploy method for your site made with Hugo content generator</title>
+      <link>https://juanrodriguezmonti.github.io/post/deployhugo/</link>
+      <pubDate>Mon, 09 Jul 2018 19:18:34 -0300</pubDate>
+      
+      <guid>https://juanrodriguezmonti.github.io/post/deployhugo/</guid>
+      <description>I use since some years Hugo as my static site generator. I like it a lot, it is fast, reliable, open source, with an amazing community and works perfectly well.
+After you setup the site, you just create content, make the new content and upload it to your server.
+You make the content available to the site with hugo , you serve the content to test it locally with hugo server, then you need to deploy the site.</description>
+    </item>
+    
+  </channel>
+</rss>
