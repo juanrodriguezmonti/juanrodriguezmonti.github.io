@@ -207,22 +207,23 @@ for item in l:
 <img src="sudoku.png" width="300" />
 ---
 # Otra solución usando Python
-```
-memo = []
-for i in range(20):
-    memo.append(-1)
+```memo = {}
 
-def fib(n):
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
-
-    if memo[n] != -1:
+def fibo(n):
+    if n in {0, 1}:
+        return n    
+    if n in memo:
         return memo[n]
-    
-    memo[n] = fib(n-1) + fib(n-2)
-    return memo[n]
+    else:           
+        value =  fibo(n -1) + fibo(n -2)
+    memo[n] = value
+    return value
+
+# No need to change recursion limit, works for 900 using standar Python setup.
+# First solution without memoization failed at with 50 elements.
+# The difference is huge.
+
+print(fibo(900))
 ```
 ---
 # Conclusión
