@@ -211,6 +211,8 @@ for item in l:
 memo = {}
 
 def fibo(n):
+    if n < 0:
+        return None
     if n in {0, 1}:
         return n    
     if n in memo:
@@ -220,10 +222,9 @@ def fibo(n):
     memo[n] = value
     return value
 
-# No need to change recursion limit, works for 900 using standar Python setup.
-# First solution without memoization failed at with 50 elements.
-# The difference is huge.
-
+# No negative numbers allowed :-)
+print(fibo(-900))
+# It works until 900 elements without breaking Python Max Recursion
 print(fibo(900))
 ```
 ---
