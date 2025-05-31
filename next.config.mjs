@@ -8,8 +8,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/juanrodriguezmonti.github.io' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/juanrodriguezmonti.github.io' : '',
+  basePath: '',
+  assetPrefix: '',
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
