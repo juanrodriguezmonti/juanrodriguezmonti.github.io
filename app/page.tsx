@@ -17,7 +17,7 @@ export default async function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900 dark:text-white">
-                Engineering Leader & Cloud Architect
+              Engineering Leader · Cloud Native and Security Focused Architect · 20+ Years in Scalable Systems
               </h1>
               <div className="flex items-center gap-3 mb-8">
                 <Building2 className="w-6 h-6 text-red-600" />
