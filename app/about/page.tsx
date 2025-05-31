@@ -26,7 +26,7 @@ export default function AboutPage() {
             <div className="md:w-2/3">
               <div className="flex items-center gap-2 mb-4">
                 <Building2 className="w-5 h-5 text-red-600" />
-                <span className="text-red-600 dark:text-red-400 font-medium">Software Engineering Manager @ RELP</span>
+                <span className="text-red-600 dark:text-red-400 font-medium">Currnet: Software Engineering Manager @ RELP</span>
               </div>
               <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">About Me</h1>
               <div className="prose prose-lg dark:prose-invert">
