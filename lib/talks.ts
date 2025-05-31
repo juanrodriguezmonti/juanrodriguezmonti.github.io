@@ -17,15 +17,15 @@ export type Talk = z.infer<typeof talkSchema>
 
 const talks: Talk[] = [
   {
-    id: "pycon-2024",
-    title: "Building Scalable Python Applications with FastAPI",
-    description: "A deep dive into building high-performance, scalable web applications using FastAPI and modern Python features. We'll cover async/await, dependency injection, and best practices for structuring large applications.",
-    event: "PyCon US 2024",
-    date: "2024-05-15",
-    location: "Pittsburgh, PA",
+    id: "nerdearla-2024",
+    title: "From Flask to FastAPI: A Journey to Better Performance and Scalability",
+    description: "Unite a esta charla para descubrir cómo migré de Flask a FastAPI y transformé completamente el backend de una aplicación para mejorar su performance y escalabilidad. En esta sesión, compartiré mi experiencia y las lecciones aprendidas durante este proceso de migración, abarcando desde los motivos iniciales hasta los desafíos y beneficios obtenidos.\n\nEmpezaremos explorando las limitaciones y problemas que enfrentaba con Flask, y cómo estos me llevaron a considerar FastAPI como una alternativa. Veremos las diferencias fundamentales entre Flask y FastAPI en términos de arquitectura, rendimiento y facilidad de uso.\n\nLuego, nos adentraremos en el proceso de migración en sí, cubriendo cómo migrar rutas, gestionar dependencias y configurar middleware. Analizaremos cómo FastAPI facilita la creación de APIs rápidas y eficientes gracias a su integración con Pydantic y su capacidad para manejar asincronía de manera nativa.\n\nAdemás, discutiremos cómo mejoró la performance de la aplicación tras la migración, incluyendo pruebas de carga y benchmarks comparativos. También hablaré sobre la escalabilidad y cómo FastAPI, combinado con herramientas como Uvicorn y Docker, facilita el despliegue y la gestión en entornos de producción.\n\nFinalmente, compartiré consejos prácticos y mejores prácticas para aquellos que estén considerando una migración similar. Esta charla es ideal para desarrolladores que buscan modernizar sus aplicaciones backend, mejorar la performance y aprender sobre las ventajas de FastAPI frente a Flask.",
+    event: "Nerdearla 2024",
+    date: "2024-03-15",
+    location: "Buenos Aires, Argentina",
     video: "https://www.youtube.com/watch?v=example",
     slides: "/JuanRodriguezMonti-FromFlasktoFastAPI-rev1.0.pdf",
-    tags: ["python", "fastapi", "web", "async"],
+    tags: ["python", "fastapi", "flask", "backend", "performance", "migration"],
     featured: true,
   },
   {
