@@ -1,0 +1,272 @@
+---
+title: "From Hugo to Next.js: A Journey of Modernizing My Personal Blog"
+date: "2025-05-31"
+description: "A detailed account of migrating my personal blog from Hugo to a custom Next.js solution, including MDX support, GitHub Actions deployment, and modern development practices"
+---
+
+# From Hugo to Next.js: A Journey of Modernizing My Personal Blog
+
+After several years of using Hugo for my personal blog, I decided it was time for a change. While Hugo served me well, I wanted more flexibility, better developer experience, and the ability to create more dynamic content. This post details my journey of migrating from Hugo to a custom Next.js solution.
+
+## Why Move Away from Hugo?
+
+Hugo is an excellent static site generator, but I had several reasons for wanting to switch:
+
+1. **Limited JavaScript Integration**: While Hugo supports JavaScript, it's not as seamless as working with a full JavaScript framework
+2. **Template Limitations**: Hugo's templating system, while powerful, can be restrictive for complex layouts
+3. **Development Experience**: I wanted a more modern development workflow with hot reloading and better tooling
+4. **Content Flexibility**: MDX support would allow me to write more interactive content
+
+## The New Stack
+
+I chose to build my new blog with:
+
+- **Next.js 14**: For its excellent static site generation capabilities and developer experience
+- **MDX**: For enhanced content authoring with React components
+- **Tailwind CSS**: For styling
+- **GitHub Actions**: For automated builds and deployments
+- **GitHub Pages**: For hosting
+
+## Setting Up the Project
+
+The first step was setting up a new Next.js project with MDX support. Here's the core configuration:
+
+```javascript showLineNumbers title="next.config.mjs"
+import createMDX from '@next/mdx'
+import remarkGfm from 'remark-gfm'
+import rehypePrettyCode from 'rehype-pretty-code'
+
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+  basePath: '',
+  assetPrefix: '',
+  trailingSlash: true,
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+}
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [[rehypePrettyCode, {
+      theme: {
+        dark: 'github-dark',
+        light: 'github-light'
+      }
+    }]],
+  },
+})
+
+export default withMDX(nextConfig)
+```
+
+## Content Structure
+
+I organized my content in a way that's both maintainable and scalable:
+
+```
+content/
+  blog/
+    post-1.mdx
+    post-2.mdx
+  projects/
+    project-1.mdx
+    project-2.mdx
+```
+
+Each MDX file follows a consistent frontmatter structure:
+
+```markdown
+---
+title: "Post Title"
+date: "2024-03-26"
+description: "Post description"
+---
+```
+
+## Automated Deployment with GitHub Actions
+
+One of the most significant improvements in my workflow is the automated deployment process. Here's the GitHub Actions workflow that handles everything:
+
+```yaml showLineNumbers title=".github/workflows/deploy.yml"
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Build
+        run: pnpm build
+        env:
+          NODE_ENV: production
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+This workflow:
+1. Triggers on pushes to main or manual dispatch
+2. Sets up the Node.js environment with pnpm
+3. Installs dependencies
+4. Builds the site
+5. Deploys to GitHub Pages
+
+## Repository Structure
+
+A key aspect of this setup is maintaining both the source code and the built site in the same repository. The structure looks like this:
+
+```
+/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── content/
+│   └── blog/
+├── src/
+│   ├── app/
+│   └── components/
+├── out/           # Built site (gitignored)
+├── public/
+└── package.json
+```
+
+The `out/` directory is gitignored but gets built and deployed through GitHub Actions. This approach gives me several benefits:
+
+1. **Version Control**: All content and code changes are tracked
+2. **Clean History**: The built files don't clutter the repository
+3. **Easy Rollbacks**: I can revert to any previous version if needed
+
+## Enhanced MDX Features
+
+With the new setup, I can use React components directly in my content. Here's an example of a custom component I created for code blocks:
+
+```jsx showLineNumbers title="src/components/CodeBlock.jsx"
+export function CodeBlock({ children, language }) {
+  return (
+    <div className="relative">
+      <div className="absolute right-2 top-2">
+        <span className="text-xs text-gray-500">{language}</span>
+      </div>
+      <pre className="p-4 rounded-lg bg-gray-800 text-white">
+        <code>{children}</code>
+      </pre>
+    </div>
+  )
+}
+```
+
+This component can be used directly in MDX files:
+
+```mdx
+<CodeBlock language="javascript">
+const hello = "world";
+console.log(hello);
+</CodeBlock>
+```
+
+## Performance Optimizations
+
+The new setup includes several performance optimizations:
+
+1. **Static Generation**: All pages are pre-rendered at build time
+2. **Image Optimization**: Next.js's built-in image optimization
+3. **Code Splitting**: Automatic code splitting for better load times
+4. **CSS Optimization**: Tailwind's purge feature removes unused styles
+
+## Migration Process
+
+The migration from Hugo to Next.js involved several steps:
+
+1. **Content Migration**: Converting Hugo markdown to MDX
+2. **Template Conversion**: Recreating layouts in React components
+3. **Asset Migration**: Moving and optimizing images and other assets
+4. **URL Structure**: Maintaining the same URL structure for SEO
+5. **Testing**: Ensuring everything works as expected
+
+## Benefits of the New Setup
+
+The new setup provides several advantages:
+
+1. **Better Developer Experience**: Hot reloading, TypeScript support, and modern tooling
+2. **Enhanced Content Creation**: MDX allows for more interactive content
+3. **Improved Performance**: Better optimization and faster load times
+4. **Easier Maintenance**: More straightforward debugging and updates
+5. **Future-Proof**: Access to the latest web development features
+
+## Challenges and Solutions
+
+The migration wasn't without challenges:
+
+1. **Build Time**: Next.js builds can be slower than Hugo
+   - Solution: Optimized the build process and used pnpm for faster installations
+
+2. **Learning Curve**: Moving from Hugo's templating to React components
+   - Solution: Created reusable components and documented patterns
+
+3. **Deployment Complexity**: Setting up GitHub Actions
+   - Solution: Created a robust workflow with proper error handling
+
+## Future Improvements
+
+I'm planning several improvements:
+
+1. **Content Search**: Implementing a search feature
+2. **Dark Mode**: Adding theme support
+3. **Analytics**: Better tracking of content performance
+4. **Comments**: Adding a commenting system
+5. **RSS Feed**: Implementing an RSS feed for subscribers
+
+## Conclusion
+
+The migration from Hugo to Next.js has been a significant improvement in my blogging workflow. The new setup provides more flexibility, better developer experience, and enhanced content capabilities. While the initial setup required more work than using Hugo, the long-term benefits make it worthwhile.
+
+The combination of Next.js, MDX, and GitHub Actions creates a powerful, maintainable, and scalable solution for personal blogging. I can now focus more on writing content and less on technical limitations.
+
+If you're considering a similar migration, I hope this post provides valuable insights into the process and benefits. The key is to plan carefully, maintain good documentation, and take advantage of the modern web development ecosystem. 
