@@ -1,0 +1,177 @@
+---
+title: "Building Production-Ready Microservices with FastAPI"
+date: "2025-01-21"
+description: "A comprehensive guide to building scalable and maintainable microservices using FastAPI"
+---
+
+# Building Production-Ready Microservices with FastAPI
+
+FastAPI has become one of the most popular Python frameworks for building high-performance APIs. In this article, we'll explore how to build production-ready microservices using FastAPI's advanced features.
+
+## Why FastAPI for Microservices?
+
+FastAPI offers several advantages that make it perfect for microservices:
+
+- **Performance**: Built on Starlette and Pydantic, it's one of the fastest Python frameworks available
+- **Type Safety**: Native support for Python type hints
+- **Automatic Documentation**: OpenAPI (Swagger) and ReDoc out of the box
+- **Modern Python**: Takes full advantage of Python 3.7+ features
+- **Async Support**: First-class support for async/await
+
+## Project Structure
+
+```bash showLineNumbers title="Project Structure"
+├── app
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── v1
+│   │   │   ├── __init__.py
+│   │   │   └── endpoints.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   └── security.py
+│   ├── db
+│   │   ├── __init__.py
+│   │   └── session.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   └── user.py
+│   └── schemas
+│       ├── __init__.py
+│       └── user.py
+├── tests
+│   └── test_api.py
+└── main.py
+```
+
+## Dependency Injection
+
+```python showLineNumbers title="app/api/dependencies.py"
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+app = FastAPI()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: int, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.id == user_id).first()
+    return user
+```
+
+## Request Validation with Pydantic
+
+```python showLineNumbers title="app/schemas/user.py"
+from pydantic import BaseModel, EmailStr
+from typing import Optional
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    full_name: str
+    password: str
+    
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+    full_name: str
+    is_active: bool
+
+    class Config:
+        from_attributes = True
+```
+
+## Middleware for Production
+
+```python showLineNumbers title="app/core/middleware.py"
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.add_middleware(
+    TrustedHostMiddleware, 
+    allowed_hosts=["api.yourdomain.com"]
+)
+```
+
+## Error Handling
+
+```python showLineNumbers title="app/core/errors.py"
+from fastapi import HTTPException
+from fastapi.responses import JSONResponse
+from fastapi.requests import Request
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "message": exc.detail,
+            "code": exc.status_code
+        }
+    )
+```
+
+## Background Tasks
+
+```python showLineNumbers title="app/api/tasks.py"
+from fastapi import BackgroundTasks
+
+def process_notification(user_id: int):
+    # Long-running task
+    pass
+
+@app.post("/users/")
+async def create_user(
+    user: UserCreate, 
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
+    db_user = User(**user.dict())
+    db.add(db_user)
+    db.commit()
+    
+    background_tasks.add_task(process_notification, db_user.id)
+    return db_user
+```
+
+## Testing
+
+```python showLineNumbers title="tests/test_api.py"
+from fastapi.testclient import TestClient
+import pytest
+
+client = TestClient(app)
+
+def test_read_user():
+    response = client.get("/users/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+```
+
+## Conclusion
+
+FastAPI provides all the tools needed to build robust, scalable microservices. By following these patterns and best practices, you can create maintainable services that are ready for production use.
+
+Remember to:
+- Use type hints consistently
+- Implement proper error handling
+- Write comprehensive tests
+- Use dependency injection
+- Implement proper validation
+- Configure appropriate middleware
+
+In the next article, we'll explore how to deploy FastAPI applications using Nginx and Docker. 
