@@ -103,7 +103,7 @@ export default async function Home() {
                   <div className="flex flex-col gap-4">
                     {talk.video && (
                       <a
-                        href={talk.video}
+                        href="https://www.youtube.com/watch?v=1DybqRECfUM"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 justify-center"
