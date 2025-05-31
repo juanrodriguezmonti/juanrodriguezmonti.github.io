@@ -78,7 +78,7 @@ export default function AboutPage() {
                 </div>
                 <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700">
                   <a
-                    href="/cv.pdf"
+                    href="/JuanRodriguezMontiCV2025.pdf"
                     className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-2 w-full justify-center"
                   >
                     <Download className="w-4 h-4" />
