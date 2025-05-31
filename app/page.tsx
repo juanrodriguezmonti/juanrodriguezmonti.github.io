@@ -25,7 +25,7 @@ export default async function Home() {
               </div>
               <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                 20+ years leading high-impact engineering teams, driving cloud architecture, and delivering scalable
-                solutions. Currently managing 10 engineers at RELP.
+                solutions. Currently working as Software Engineering Manager at RELP.
               </p>
               <div className="flex flex-wrap items-center gap-6">
                 <Link
