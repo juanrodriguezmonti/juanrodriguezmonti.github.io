@@ -30,7 +30,7 @@ export default function AboutPage() {
               </div>
               <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">About Me</h1>
               <div className="prose prose-lg dark:prose-invert">
-                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
                   I'm a seasoned Software Engineering Manager with over two decades of experience driving full-stack
                   technical strategy and leading high-impact teams. Currently at RELP, I lead a team of 10 engineers
                   with end-to-end ownership of architecture, backend, frontend, cloud infrastructure, and security.
@@ -91,16 +91,16 @@ export default function AboutPage() {
             {/* Main Content */}
             <div className="md:col-span-2">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify">
                   I drive technical strategy, team development, and execution of scalable, secure solutions aligned with
                   business goals. My technical background spans AWS and cloud platforms, distributed architectures,
                   secure software development, and resilient systems design.
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-justify">
                   As a people-first leader, I focus on technical excellence, career growth, and creating a culture of
                   ownership, autonomy, and collaboration. I believe great systems start with great teams.
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-12">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-12 text-justify">
                   Throughout my career, I've founded companies, led technical transformations, taught at universities,
                   and written for international technical publications. I'm always open to meaningful adventures in
                   engineering, design, cloud transformation, and scaling modern infrastructures.
@@ -118,8 +118,8 @@ export default function AboutPage() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">Software Engineering Manager</h3>
                       <p className="text-red-600 dark:text-red-400 font-medium">RELP</p>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">March 2024 - Present</p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-justify">March 2024 - Present</p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">
                       Leading a high-performing engineering team of 10 engineers with end-to-end ownership of
                       architecture, backend, frontend, cloud infrastructure, and security. Driving technical strategy
                       and execution of scalable, secure solutions.
@@ -150,10 +150,10 @@ export default function AboutPage() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">Head of Software Engineering</h3>
                       <p className="text-amber-600 dark:text-amber-400 font-medium">RELP</p>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-justify">
                       May 2022 - March 2024 · Brussels, Belgium
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">
                       Designed and implemented full architecture for large-scale application with multiple asynchronous
                       microservices. Led company's cloud infrastructure transition to AWS.
                     </p>
@@ -183,10 +183,10 @@ export default function AboutPage() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">CEO and Founder</h3>
                       <p className="text-green-600 dark:text-green-400 font-medium">Fibona Software</p>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-justify">
                       February 2017 - September 2021 · Buenos Aires, Argentina
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">
                       Co-founded and led a software development firm focused on delivering tailored web and desktop
                       solutions for mid-size to large clients. Managed growing engineering team and client
                       relationships.
@@ -219,10 +219,10 @@ export default function AboutPage() {
                       </h3>
                       <p className="text-blue-600 dark:text-blue-400 font-medium">Lucnos Software Development</p>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-justify">
                       December 2012 - December 2016 · Junín, Argentina
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">
                       Led full-cycle software development projects focusing on delivery of robust web applications.
                       Designed software architecture for over 20 medium to large-scale applications.
                     </p>
@@ -246,8 +246,8 @@ export default function AboutPage() {
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">Professional Technical Writer</h3>
                       <p className="text-purple-600 dark:text-purple-400 font-medium">Freelance</p>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">January 2004 - August 2010</p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-justify">January 2004 - August 2010</p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">
                       Technical writer for international magazines including Linux User, Linux Magazine, Newsforge.
                       Published articles in ACM.org and served as technical reviewer for O'Reilly's "Knoppix Hacks 2nd
                       Edition".
@@ -275,8 +275,8 @@ export default function AboutPage() {
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                       Professor Computer Science & Data Structures
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-2">UNNOBA · 2017 - 2023 · 6 years</p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
+                    <p className="text-gray-600 dark:text-gray-400 mb-2 text-justify">UNNOBA · 2017 - 2023 · 6 years</p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm text-justify">
                       Taught Computer Science fundamentals, Data Structures, and advanced algorithms to undergraduate
                       students. Developed curriculum and conducted research in algorithm optimization.
                     </p>
