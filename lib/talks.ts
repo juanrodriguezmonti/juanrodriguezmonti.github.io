@@ -23,7 +23,7 @@ const talks: Talk[] = [
     event: "Nerdearla 2024",
     date: "2024-03-15",
     location: "Buenos Aires, Argentina",
-    video: "https://www.youtube.com/watch?v=example",
+    video: "https://www.youtube.com/watch?v=1DybqRECfUM",
     slides: "/JuanRodriguezMonti-FromFlasktoFastAPI-rev1.0.pdf",
     tags: ["python", "fastapi", "flask", "backend", "performance", "migration"],
     featured: true,

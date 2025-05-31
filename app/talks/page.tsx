@@ -59,7 +59,7 @@ export default async function TalksPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">{talk.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-justify">{talk.description}</p>
                   {talk.tags && (
                     <div className="flex flex-wrap gap-2 mb-6">
                       {talk.tags.map((tag) => (
@@ -137,7 +137,7 @@ export default async function TalksPage() {
                 )}
 
                 {talk.description && (
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">{talk.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-justify">{talk.description}</p>
                 )}
 
                 <div className="flex flex-wrap gap-6 mb-6">
