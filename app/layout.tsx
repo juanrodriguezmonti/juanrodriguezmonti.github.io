@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description:
     "Software Engineering Manager with 20+ years leading high-impact teams, cloud architecture, and scalable systems. Currently at RELP leading 10 engineers.",
   metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://juanrodriguezmonti.github.io' : 'http://localhost:3000'),
+  icons: {
+    icon: process.env.NODE_ENV === 'production' ? '/juanrodriguezmonti.github.io/favicon.ico' : '/favicon.ico',
+  },
   keywords: [
     "Engineering Leadership",
     "Cloud Architecture",
