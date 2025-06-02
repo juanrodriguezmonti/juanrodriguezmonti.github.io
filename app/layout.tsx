@@ -5,6 +5,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import GoogleAnalytics from "@/components/google-analytics"
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -65,6 +66,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className="font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />
