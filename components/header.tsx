@@ -61,7 +61,7 @@ export default function Header() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:rmontijuan@gnail.com"
+              href="mailto:rmontijuan@gmail.com"
               className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
               aria-label="Email"
             >
