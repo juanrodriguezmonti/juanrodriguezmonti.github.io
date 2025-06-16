@@ -290,61 +290,38 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Leadership & Management</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Engineering Leadership</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "95%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Technical Strategy</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "90%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Team Scaling</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "95%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Mentoring</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "90%" }}></div>
-                        </div>
-                      </div>
-                    </div>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Team Leadership</span> Building, mentoring, and scaling high-performing teams</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Strategy</span> Defining and executing technology roadmaps</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Project Management</span> Agile, Kanban, delivery and execution</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Mentoring</span> Coaching engineers and fostering growth</li>
+                    </ul>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Cloud & Infrastructure</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">AWS</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "95%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Python/FastAPI</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "95%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Kubernetes</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "90%" }}></div>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-700 dark:text-gray-300">Security</span>
-                        <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                          <div className="bg-red-600 h-2 rounded-full" style={{ width: "85%" }}></div>
-                        </div>
-                      </div>
-                    </div>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Cloud, DevOps & Security</h3>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">AWS & Cloud</span> Architecting and operating scalable cloud platforms</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Kubernetes</span> Orchestrating containers and microservices</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">CI/CD & Automation</span> GitHub Actions, pipelines, infrastructure as code</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Security</span> Secure software development, compliance, best practices</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Software Engineering</h3>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Python & FastAPI</span> Backend, APIs, automation, data processing</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">JavaScript/TypeScript</span> Modern web development, Node.js, React</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">SQL & NoSQL</span> PostgreSQL, MongoDB, Redis</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Architecture</span> Distributed systems, microservices, event-driven design</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Other Strengths</h3>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Writing</span> Articles, documentation, knowledge sharing</li>
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Teaching</span> University-level courses, mentoring, workshops</li>
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Entrepreneurship</span> Startups, business development, innovation</li>
+                    </ul>
                   </div>
                 </div>
               </section>
