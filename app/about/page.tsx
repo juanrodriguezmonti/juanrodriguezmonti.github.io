@@ -291,36 +291,51 @@ export default function AboutPage() {
                   <div>
                     <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Leadership & Management</h3>
                     <ul className="space-y-2">
-                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Team Leadership</span> Building, mentoring, and scaling high-performing teams</li>
-                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Strategy</span> Defining and executing technology roadmaps</li>
-                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Project Management</span> Agile, Kanban, delivery and execution</li>
-                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Mentoring</span> Coaching engineers and fostering growth</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Team Leadership</span> Building, mentoring, and scaling high-performing teams.</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Strategy</span> Defining and executing technology roadmaps.</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Project Management</span> Agile, Kanban, delivery and execution.</li>
+                      <li><span className="inline-block bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Mentoring</span> Coaching engineers and fostering growth.</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Cloud, DevOps & Security</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Cloud & DevOps</h3>
                     <ul className="space-y-2">
-                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">AWS & Cloud</span> Architecting and operating scalable cloud platforms</li>
-                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Kubernetes</span> Orchestrating containers and microservices</li>
-                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">CI/CD & Automation</span> GitHub Actions, pipelines, infrastructure as code</li>
-                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Security</span> Secure software development, compliance, best practices</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">AWS & Cloud</span> Architecting and operating scalable cloud platforms.</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Kubernetes</span> Orchestrating containers and microservices.</li>
+                      <li><span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium mr-2">CI/CD & Automation</span> GitHub Actions, pipelines, infrastructure as code.</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Software Engineering</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Frontend</h3>
                     <ul className="space-y-2">
-                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Python & FastAPI</span> Backend, APIs, automation, data processing</li>
-                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">JavaScript/TypeScript</span> Modern web development, Node.js, React</li>
-                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">SQL & NoSQL</span> PostgreSQL, MongoDB, Redis</li>
-                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Architecture</span> Distributed systems, microservices, event-driven design</li>
+                      <li><span className="inline-block bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Next.js</span> Fullstack React framework for modern web apps.</li>
+                      <li><span className="inline-block bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm font-medium mr-2">React</span> Component-based UI development, hooks, state management.</li>
+                      <li><span className="inline-block bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full text-sm font-medium mr-2">TypeScript</span> Type-safe JavaScript for scalable frontend codebases.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Backend</h3>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">FastAPI</span> High-performance Python APIs and microservices.</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Flask</span> Lightweight Python web applications and APIs.</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Node.js</span> JavaScript runtime for scalable backend services.</li>
+                      <li><span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Rust</span> Safe, fast, and modern backend systems.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Security</h3>
+                    <ul className="space-y-2">
+                      <li><span className="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Security</span> Secure software development, compliance, best practices.</li>
+                      <li><span className="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium mr-2">OWASP</span> Threat modelling, secure coding, vulnerability management.</li>
+                      <li><span className="inline-block bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Cloud Security</span> IAM, encryption, network security in AWS and Kubernetes.</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Other Strengths</h3>
                     <ul className="space-y-2">
-                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Writing</span> Articles, documentation, knowledge sharing</li>
-                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Teaching</span> University-level courses, mentoring, workshops</li>
-                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Entrepreneurship</span> Startups, business development, innovation</li>
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Technical Writing</span> Articles, documentation, knowledge sharing.</li>
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Teaching</span> University-level courses, mentoring, workshops.</li>
+                      <li><span className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full text-sm font-medium mr-2">Entrepreneurship</span> Startups, business development, innovation.</li>
                     </ul>
                   </div>
                 </div>

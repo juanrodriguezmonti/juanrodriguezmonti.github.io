@@ -1,0 +1,225 @@
+---
+title: "Steganography & Cryptography: Hiding Encrypted Messages in Images with Python and Flask"
+date: "2024-06-17"
+description: "A practical guide to combining steganography and public-key cryptography to hide and retrieve encrypted messages in images, using Python and Flask."
+author: "Juan Rodriguez Monti"
+---
+
+# Steganography & Cryptography: Hiding Encrypted Messages in Images with Python and Flask
+
+![Stego Image Example 1](/cover1_stego.png)
+
+This article is a work in progress effort. In this space, we explore how to combine steganography and public-key cryptography to securely hide and retrieve messages inside images. This approach is useful for secure communications, watermarking, digital signatures, or simply for fun. We'll use Python for the core logic and Flask to provide a simple web interface.
+
+---
+
+## 1. Introduction: Why Combine Steganography and Cryptography?
+
+Steganography is the practice of hiding information within other non-secret data, such as embedding a message inside an image. Cryptography, on the other hand, is the science of encrypting information so that only authorised parties can read it. By combining both, we can hide an encrypted message in an image, making it both invisible and unreadable without the right keys.
+
+**Real-world applications:**
+- Secure communication in hostile environments
+- Digital watermarking and copyright protection
+- Tamper-proof audit trails
+- Secure key exchange
+- Covert channels for whistleblowers or journalists
+
+---
+
+## 2. Generating Keys and Encrypting a Message
+
+We'll use RSA (public/private key) encryption. First, let's generate keys and encrypt a message. This ensures that even if the hidden message is found, it cannot be read without the private key.
+
+```python
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import serialization, hashes
+
+# Generate RSA keys
+def generate_keys():
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    public_key = private_key.public_key()
+    return private_key, public_key
+
+# Save/load keys for reuse
+def save_private_key(private_key, filename):
+    with open(filename, 'wb') as f:
+        f.write(private_key.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.PKCS8,
+            encryption_algorithm=serialization.NoEncryption()
+        ))
+
+def save_public_key(public_key, filename):
+    with open(filename, 'wb') as f:
+        f.write(public_key.public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        ))
+
+# Encrypt a message with the public key
+def encrypt_message(message: str, public_key) -> bytes:
+    return public_key.encrypt(
+        message.encode(),
+        padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None)
+    )
+
+private_key, public_key = generate_keys()
+secret = "This is a top secret message!"
+encrypted = encrypt_message(secret, public_key)
+```
+
+**Tip:** Always keep your private key secure. Never share it or store it in public repositories.
+
+---
+
+## 3. Hiding the Encrypted Message in an Image (Steganography)
+
+We'll use the `Pillow` library to manipulate images and hide the encrypted message in the least significant bits (LSB) of the image pixels. This is a classic but effective technique for hiding binary data in images.
+
+```python
+from PIL import Image
+import numpy as np
+
+def hide_data_in_image(image_path, data_bytes, output_path):
+    img = Image.open(image_path)
+    arr = np.array(img)
+    flat = arr.flatten()
+    bits = ''.join(f'{byte:08b}' for byte in data_bytes)
+    if len(bits) > len(flat):
+        raise ValueError("Data too large for image!")
+    for i, bit in enumerate(bits):
+        flat[i] = (flat[i] & ~1) | int(bit)
+    arr2 = flat.reshape(arr.shape)
+    img2 = Image.fromarray(arr2)
+    img2.save(output_path)
+
+# Example usage:
+hide_data_in_image('public/cover1.png', encrypted, 'public/cover1_stego.png')
+```
+
+**Security note:** LSB steganography is not foolproof. It can be detected by statistical analysis or if the image is recompressed. For higher security, use lossless formats (PNG) and consider adding noise or using more advanced algorithms.
+
+---
+
+## 4. Retrieving and Decrypting the Message
+
+Now, let's extract the hidden data and decrypt it. This process reverses the LSB embedding and then uses the private key to recover the original message.
+
+```python
+def extract_data_from_image(image_path, num_bytes):
+    img = Image.open(image_path)
+    arr = np.array(img)
+    flat = arr.flatten()
+    bits = [str(flat[i] & 1) for i in range(num_bytes * 8)]
+    bytes_out = [int(''.join(bits[i:i+8]), 2) for i in range(0, len(bits), 8)]
+    return bytes(bytes_out)
+
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+
+def decrypt_message(encrypted_bytes, private_key):
+    return private_key.decrypt(
+        encrypted_bytes,
+        padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None)
+    ).decode()
+
+# Example usage:
+retrieved = extract_data_from_image('public/cover1_stego.png', len(encrypted))
+message = decrypt_message(retrieved, private_key)
+print(message)
+```
+
+**Variant:** You can also add a header to the hidden data to store the length of the message, so you don't need to know it in advance.
+
+---
+
+![Stego Image Example 2](/cover2_stego.png)
+
+---
+
+## 5. Serving with Flask (Optional Web Interface)
+
+You can create a simple Flask app to upload an image, hide a message, and download the result. This makes the process accessible to non-technical users and enables automation.
+
+```python
+from flask import Flask, request, send_file, jsonify
+import io
+
+app = Flask(__name__)
+
+@app.route('/hide', methods=['POST'])
+def hide():
+    image = request.files['image']
+    message = request.form['message']
+    # ... (encrypt and hide message as above)
+    # Return the stego image as a download
+    return send_file(io.BytesIO(stego_bytes), mimetype='image/png', as_attachment=True, download_name='stego.png')
+
+@app.route('/reveal', methods=['POST'])
+def reveal():
+    image = request.files['image']
+    # ... (extract and decrypt message)
+    return jsonify({'message': message})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+**Tip:** Always validate and sanitise user input in web applications. Never trust uploaded files blindly.
+
+![Flask Stego UI Example](/flask_stego_ui.png)
+
+---
+
+## 6. Best Practices and Security Considerations
+
+- Use lossless image formats (PNG) to avoid data loss.
+- Never store or transmit private keys insecurely.
+- Consider encrypting the image itself for extra security.
+- Be aware of steganalysis tools that can detect hidden data.
+- For production, use established libraries and audit your code.
+
+---
+
+## 7. Frequently Asked Questions (FAQ)
+
+**Q: Can I use JPEG images?**  
+A: Not recommended. JPEG compression destroys hidden data. Use PNG or BMP.
+
+**Q: How much data can I hide?**  
+A: Roughly one bit per pixel channel. For a 400x300 RGB image, about 45 KB.
+
+**Q: Is this method undetectable?**  
+A: No. LSB steganography can be detected by statistical analysis. For high-stakes use, combine with other obfuscation techniques.
+
+**Q: Can I use other encryption algorithms?**  
+A: Yes. You can use AES for symmetric encryption, or hybrid approaches for larger messages.
+
+---
+
+## 8. Further Resources
+
+- [cryptography Python library](https://cryptography.io/)
+- [Pillow (PIL) documentation](https://pillow.readthedocs.io/en/stable/)
+- [Steganography Wikipedia](https://en.wikipedia.org/wiki/Steganography)
+- [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)
+
+---
+
+## 9. Glossary
+
+- **Steganography:** Hiding information within other non-secret data.
+- **Cryptography:** Securing information by transforming it so only authorised parties can read it.
+- **LSB (Least Significant Bit):** The lowest bit in a byte, often used for hiding data in images.
+- **RSA:** A public-key cryptography algorithm.
+- **Flask:** A lightweight Python web framework.
+
+---
+
+## 10. Conclusion
+
+By combining cryptography and steganography, you can securely hide and transmit sensitive information in plain sight. This approach is practical for secure communications, watermarking, or even digital signatures. The code here can be extended for larger files, different encryption algorithms, or more advanced web interfaces.
+
+---
+
+*All images in this article were generated for demonstration purposes.* 
