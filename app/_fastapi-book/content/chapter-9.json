@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Deployment",
+    "sections": [
+      {
+        "title": "Production Server",
+        "content": "Setting up a production server with Uvicorn:\n\n```python\n# main.py\nimport uvicorn\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8000, reload=False)\n\n# Running with Gunicorn\n# gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000\n```"
+      },
+      {
+        "title": "Docker Setup",
+        "content": "Containerizing the application with Docker:\n\n```dockerfile\n# Dockerfile\nFROM python:3.9\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nCMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n\n# docker-compose.yml\nversion: '3'\n\nservices:\n  web:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      - DATABASE_URL=postgresql://user:password@db:5432/dbname\n    depends_on:\n      - db\n\n  db:\n    image: postgres:13\n    environment:\n      - POSTGRES_USER=user\n      - POSTGRES_PASSWORD=password\n      - POSTGRES_DB=dbname\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\nvolumes:\n  postgres_data:\n```"
+      },
+      {
+        "title": "Environment Variables",
+        "content": "Managing environment variables:\n\n```python\n# .env\nDATABASE_URL=postgresql://user:password@localhost/dbname\nSECRET_KEY=your-secret-key\nDEBUG=False\n\n# config.py\nfrom pydantic_settings import BaseSettings\nfrom functools import lru_cache\n\nclass Settings(BaseSettings):\n    DATABASE_URL: str\n    SECRET_KEY: str\n    DEBUG: bool = False\n\n    class Config:\n        env_file = \".env\"\n\n@lru_cache()\ndef get_settings():\n    return Settings()\n\n# main.py\nfrom fastapi import FastAPI, Depends\nfrom .config import Settings, get_settings\n\napp = FastAPI()\n\n@app.get(\"/info\")\ndef info(settings: Settings = Depends(get_settings)):\n    return {\n        \"app_name\": \"My FastAPI App\",\n        \"debug\": settings.DEBUG\n    }\n```"
+      },
+      {
+        "title": "Cloud Deployment",
+        "content": "Deploying to cloud platforms:\n\n```yaml\n# AWS Elastic Beanstalk\n# .elasticbeanstalk/config.yml\nbranch-defaults:\n  main:\n    environment: my-fastapi-env\n\nglobal:\n  application_name: my-fastapi-app\n  default_ec2_keyname: null\n  default_platform: Python 3.9\n  default_region: us-west-2\n  include_git_submodules: true\n  instance_profile: null\n  platform_name: null\n  platform_version: null\n  profile: null\n  sc: git\n  workspace_type: Application\n\n# Google Cloud Run\n# cloudbuild.yaml\nsteps:\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-fastapi-app', '.']\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['push', 'gcr.io/$PROJECT_ID/my-fastapi-app']\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  entrypoint: gcloud\n  args:\n  - 'run'\n  - 'deploy'\n  - 'my-fastapi-app'\n  - '--image'\n  - 'gcr.io/$PROJECT_ID/my-fastapi-app'\n  - '--region'\n  - 'us-central1'\n  - '--platform'\n  - 'managed'\n\n# Heroku\n# Procfile\nweb: uvicorn main:app --host=0.0.0.0 --port=$PORT\n```"
+      }
+    ]
+  },
+  "es": {
+    "title": "Despliegue",
+    "sections": [
+      {
+        "title": "Servidor de Producción",
+        "content": "Configurando un servidor de producción con Uvicorn:\n\n```python\n# main.py\nimport uvicorn\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8000, reload=False)\n\n# Ejecutando con Gunicorn\n# gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000\n```"
+      },
+      {
+        "title": "Configuración de Docker",
+        "content": "Containerizando la aplicación con Docker:\n\n```dockerfile\n# Dockerfile\nFROM python:3.9\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nCMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"]\n\n# docker-compose.yml\nversion: '3'\n\nservices:\n  web:\n    build: .\n    ports:\n      - \"8000:8000\"\n    environment:\n      - DATABASE_URL=postgresql://usuario:contraseña@db:5432/nombre_db\n    depends_on:\n      - db\n\n  db:\n    image: postgres:13\n    environment:\n      - POSTGRES_USER=usuario\n      - POSTGRES_PASSWORD=contraseña\n      - POSTGRES_DB=nombre_db\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\nvolumes:\n  postgres_data:\n```"
+      },
+      {
+        "title": "Variables de Entorno",
+        "content": "Gestionando variables de entorno:\n\n```python\n# .env\nDATABASE_URL=postgresql://usuario:contraseña@localhost/nombre_db\nSECRET_KEY=tu-clave-secreta\nDEBUG=False\n\n# config.py\nfrom pydantic_settings import BaseSettings\nfrom functools import lru_cache\n\nclass Settings(BaseSettings):\n    DATABASE_URL: str\n    SECRET_KEY: str\n    DEBUG: bool = False\n\n    class Config:\n        env_file = \".env\"\n\n@lru_cache()\ndef get_settings():\n    return Settings()\n\n# main.py\nfrom fastapi import FastAPI, Depends\nfrom .config import Settings, get_settings\n\napp = FastAPI()\n\n@app.get(\"/info\")\ndef info(settings: Settings = Depends(get_settings)):\n    return {\n        \"app_name\": \"Mi Aplicación FastAPI\",\n        \"debug\": settings.DEBUG\n    }\n```"
+      },
+      {
+        "title": "Despliegue en la Nube",
+        "content": "Desplegando en plataformas cloud:\n\n```yaml\n# AWS Elastic Beanstalk\n# .elasticbeanstalk/config.yml\nbranch-defaults:\n  main:\n    environment: mi-entorno-fastapi\n\nglobal:\n  application_name: mi-aplicacion-fastapi\n  default_ec2_keyname: null\n  default_platform: Python 3.9\n  default_region: us-west-2\n  include_git_submodules: true\n  instance_profile: null\n  platform_name: null\n  platform_version: null\n  profile: null\n  sc: git\n  workspace_type: Application\n\n# Google Cloud Run\n# cloudbuild.yaml\nsteps:\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['build', '-t', 'gcr.io/$PROJECT_ID/mi-aplicacion-fastapi', '.']\n- name: 'gcr.io/cloud-builders/docker'\n  args: ['push', 'gcr.io/$PROJECT_ID/mi-aplicacion-fastapi']\n- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'\n  entrypoint: gcloud\n  args:\n  - 'run'\n  - 'deploy'\n  - 'mi-aplicacion-fastapi'\n  - '--image'\n  - 'gcr.io/$PROJECT_ID/mi-aplicacion-fastapi'\n  - '--region'\n  - 'us-central1'\n  - '--platform'\n  - 'managed'\n\n# Heroku\n# Procfile\nweb: uvicorn main:app --host=0.0.0.0 --port=$PORT\n```"
+      }
+    ]
+  }
+}

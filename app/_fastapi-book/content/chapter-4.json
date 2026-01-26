@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Request Validation and Error Handling",
+    "sections": [
+      {
+        "title": "Request Validation with Pydantic",
+        "content": "FastAPI leverages Pydantic models to enforce strict validation of incoming request bodies. This ensures that your API only receives well-structured and expected data before entering your application logic. Validation is automatic and transparent to the developer.\n\nHere's an example:\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, Field, EmailStr\nfrom typing import Optional\n\nclass User(BaseModel):\n    email: EmailStr\n    username: str = Field(..., min_length=3, max_length=50)\n    age: int = Field(..., gt=0, lt=120)\n    is_active: bool = True\n    bio: Optional[str] = Field(None, max_length=1000)\n\napp = FastAPI()\n\n@app.post(\"/users/\")\ndef create_user(user: User):\n    return user\n```\n\nThis validation automatically:\n- Ensures `email` is a valid format (e.g., \"user@example.com\")\n- Restricts `username` to be between 3 and 50 characters\n- Enforces `age` to be between 1 and 119\n- Allows optional fields with default values\n\nPydantic ensures that incorrect or malicious data is rejected with a 422 error and descriptive feedback."
+      },
+      {
+        "title": "Custom Validation",
+        "content": "While field-level validation handles most use cases, you can define advanced logic using Pydantic's `@validator` decorator. This allows rules based on conditions, combinations of fields, or external data.\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, validator\nfrom typing import List\n\nclass Item(BaseModel):\n    name: str\n    tags: List[str]\n\n    @validator('tags')\n    def validate_tags(cls, v):\n        if len(v) > 5:\n            raise ValueError('Maximum 5 tags allowed')\n        return v\n```\n\nThis example ensures users don’t add more than 5 tags per item.\n\nYou can also use `root_validator` to work with multiple fields at once:\n```python\nfrom pydantic import root_validator\n\nclass Product(BaseModel):\n    price: float\n    discount: float\n\n    @root_validator\n    def check_discount(cls, values):\n        price, discount = values.get('price'), values.get('discount')\n        if discount >= price:\n            raise ValueError(\"Discount must be less than price\")\n        return values\n```"
+      },
+      {
+        "title": "Error Handling",
+        "content": "FastAPI provides a built-in mechanism for handling errors via exceptions. For custom logic or input errors, you can raise `HTTPException` which returns a structured HTTP error response.\n\n```python\nfrom fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    if item_id < 0:\n        raise HTTPException(\n            status_code=400,\n            detail=\"Item ID must be positive\"\n        )\n    return {\"item_id\": item_id}\n```\n\nThis approach:\n- Returns proper HTTP status codes (400, 404, etc.)\n- Sends clear, structured error details to the client\n- Keeps business logic clean and readable"
+      },
+      {
+        "title": "Custom Exception Handlers",
+        "content": "FastAPI allows you to define your own exception handlers for full control over error formatting and behavior.\n\nFor example, to handle validation errors globally:\n```python\nfrom fastapi import Request\nfrom fastapi.responses import JSONResponse\nfrom fastapi.exceptions import RequestValidationError\nfrom pydantic import ValidationError\n\n@app.exception_handler(RequestValidationError)\nasync def request_validation_handler(request: Request, exc: RequestValidationError):\n    return JSONResponse(\n        status_code=422,\n        content={\n            \"error\": \"Validation failed\",\n            \"details\": exc.errors(),\n            \"body\": exc.body\n        }\n    )\n```\n\nYou can also handle custom exceptions by creating your own class:\n```python\nclass MyCustomException(Exception):\n    def __init__(self, name: str):\n        self.name = name\n\n@app.exception_handler(MyCustomException)\nasync def my_custom_exception_handler(request: Request, exc: MyCustomException):\n    return JSONResponse(\n        status_code=418,\n        content={\"message\": f\"Oops! {exc.name} caused an error.\"}\n    )\n```\n\nThis pattern improves consistency and provides detailed insights to API clients while hiding internal logic."
+      }
+    ]
+  },
+  "es": {
+    "title": "Validación de Solicitudes y Manejo de Errores",
+    "sections": [
+      {
+        "title": "Validación de Solicitudes con Pydantic",
+        "content": "FastAPI utiliza modelos Pydantic para validar automáticamente los datos recibidos en el cuerpo de una solicitud. Esto permite asegurarte de que la información enviada por el cliente es coherente y está correctamente estructurada.\n\nEjemplo básico:\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, Field, EmailStr\nfrom typing import Optional\n\nclass Usuario(BaseModel):\n    email: EmailStr\n    username: str = Field(..., min_length=3, max_length=50)\n    age: int = Field(..., gt=0, lt=120)\n    is_active: bool = True\n    bio: Optional[str] = Field(None, max_length=1000)\n\napp = FastAPI()\n\n@app.post(\"/usuarios/\")\ndef crear_usuario(usuario: Usuario):\n    return usuario\n```\n\nEste modelo:\n- Valida emails con formato correcto\n- Limita la longitud del nombre de usuario\n- Restringe la edad a un rango específico\n- Permite biografía opcional y limitada en longitud\n\nLos errores son devueltos con código 422 y detalles en formato JSON."
+      },
+      {
+        "title": "Validación Personalizada",
+        "content": "Cuando necesitas lógica más compleja, puedes usar validadores personalizados con `@validator` o `@root_validator` de Pydantic.\n\n```python\nfrom pydantic import validator\n\nclass Item(BaseModel):\n    name: str\n    tags: List[str]\n\n    @validator('tags')\n    def validar_tags(cls, v):\n        if len(v) > 5:\n            raise ValueError('Máximo 5 etiquetas permitidas')\n        return v\n```\n\nTambién puedes validar múltiples campos a la vez:\n```python\nfrom pydantic import root_validator\n\nclass Producto(BaseModel):\n    precio: float\n    descuento: float\n\n    @root_validator\n    def validar_descuento(cls, valores):\n        precio = valores.get('precio')\n        descuento = valores.get('descuento')\n        if descuento >= precio:\n            raise ValueError(\"El descuento no puede ser mayor o igual al precio\")\n        return valores\n```"
+      },
+      {
+        "title": "Manejo de Errores",
+        "content": "FastAPI tiene soporte nativo para manejo de errores con excepciones HTTP. Usando `HTTPException` puedes devolver errores personalizados con código de estado y mensajes detallados.\n\n```python\nfrom fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\ndef leer_item(item_id: int):\n    if item_id < 0:\n        raise HTTPException(\n            status_code=400,\n            detail=\"El ID del ítem debe ser positivo\"\n        )\n    return {\"item_id\": item_id}\n```\n\nEste patrón es útil para:\n- Reglas de negocio\n- Validaciones de parámetros de ruta o consulta\n- Accesos inválidos o no permitidos"
+      },
+      {
+        "title": "Manejadores de Excepciones Personalizados",
+        "content": "Puedes definir tus propios manejadores de excepciones para controlar cómo responde tu API ante errores específicos.\n\nPor ejemplo, para capturar errores de validación:\n```python\nfrom fastapi import Request\nfrom fastapi.responses import JSONResponse\nfrom fastapi.exceptions import RequestValidationError\n\n@app.exception_handler(RequestValidationError)\nasync def manejador_validacion(request: Request, exc: RequestValidationError):\n    return JSONResponse(\n        status_code=422,\n        content={\n            \"error\": \"Error de validación\",\n            \"detalles\": exc.errors(),\n            \"cuerpo\": exc.body\n        }\n    )\n```\n\nTambién puedes crear tus propias excepciones:\n```python\nclass MiExcepcionPersonal(Exception):\n    def __init__(self, nombre: str):\n        self.nombre = nombre\n\n@app.exception_handler(MiExcepcionPersonal)\nasync def manejador_personalizado(request: Request, exc: MiExcepcionPersonal):\n    return JSONResponse(\n        status_code=418,\n        content={\"mensaje\": f\"Error causado por {exc.nombre}\"}\n    )\n```\n\nEsto estandariza las respuestas de error y mejora la experiencia del cliente de tu API."
+      }
+    ]
+  }
+}

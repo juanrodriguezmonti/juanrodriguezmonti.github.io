@@ -1,0 +1,52 @@
+{
+  "en": {
+    "title": "Best Practices",
+    "sections": [
+      {
+        "title": "Project Structure",
+        "content": "A well-structured project is essential for maintainability, scalability, and onboarding new developers. FastAPI projects benefit greatly from a modular architecture. A common structure separates concerns into logical domains such as routing, models, schemas, services (or CRUD), and configuration.\n\nExample structure:\n\n```\nmy_fastapi_app/\n├── app/\n│   ├── api/                  # API routes and versioning\n│   │   └── v1/\n│   │       └── endpoints/    # Individual route files (e.g., users.py)\n│   ├── core/                 # Core configuration and security utilities\n│   ├── db/                   # Database setup, sessions, and base class\n│   ├── models/               # ORM models\n│   ├── schemas/              # Pydantic schemas for request/response\n│   ├── services/             # Business logic / CRUD functions\n│   ├── main.py               # FastAPI app instance and startup\n├── tests/                    # Unit and integration tests\n├── alembic/                  # Database migrations\n├── .env                      # Environment variables\n├── requirements.txt\n└── README.md\n```"
+      },
+      {
+        "title": "Code Organization",
+        "content": "Divide code responsibilities into clearly defined modules:\n\n- **Routers (`api/`)**: Handle request routing and HTTP-specific logic.\n- **Schemas (`schemas/`)**: Define the structure of input and output data using Pydantic.\n- **Models (`models/`)**: Represent the database entities using SQLAlchemy.\n- **Services or CRUD (`services/`)**: Contain reusable business logic.\n- **Dependencies (`core/deps.py`)**: Common dependency injection for authentication, sessions, etc.\n- **Configuration (`core/config.py`)**: Centralize environment-based settings.\n\nThis separation ensures high cohesion and low coupling, making the code easier to navigate and test."
+      },
+      {
+        "title": "Error Handling",
+        "content": "Implementing a centralized and consistent error handling strategy is key for user experience and debugging. Define custom exception classes and register them with the FastAPI application:\n\n```python\n# core/exceptions.py\nfrom fastapi import HTTPException, status\n\nclass ResourceNotFound(HTTPException):\n    def __init__(self, detail=\"Resource not found\"):\n        super().__init__(status_code=status.HTTP_404_NOT_FOUND, detail=detail)\n\nclass InvalidRequest(HTTPException):\n    def __init__(self, detail=\"Invalid request\"):\n        super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=detail)\n```\n\nIn `main.py`, register handlers:\n\n```python\nfrom fastapi.responses import JSONResponse\nfrom core.exceptions import ResourceNotFound, InvalidRequest\n\n@app.exception_handler(ResourceNotFound)\ndef not_found_handler(request, exc):\n    return JSONResponse(status_code=exc.status_code, content={\"error\": exc.detail})\n```"
+      },
+      {
+        "title": "Security Best Practices",
+        "content": "FastAPI provides the tools to implement robust security. Best practices include:\n\n- Use **hashed passwords** with `passlib`\n- Secure endpoints with **OAuth2 Bearer tokens**\n- Store secrets and sensitive data in **environment variables**\n- Validate tokens using **`python-jose`**\n- Use **HTTPS** in production\n\nExample:\n\n```python\nfrom passlib.context import CryptContext\nfrom jose import jwt, JWTError\n\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\nSECRET_KEY = \"your-secret\"\nALGORITHM = \"HS256\"\n\n# Hash password\ndef get_password_hash(password):\n    return pwd_context.hash(password)\n\n# Verify password\ndef verify_password(plain_password, hashed):\n    return pwd_context.verify(plain_password, hashed)\n\n# Create access token\nfrom datetime import datetime, timedelta\n\ndef create_token(data: dict, expires_delta: timedelta = timedelta(minutes=15)):\n    to_encode = data.copy()\n    to_encode.update({\"exp\": datetime.utcnow() + expires_delta})\n    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)\n```"
+      },
+      {
+        "title": "Documentation and Maintainability",
+        "content": "FastAPI automatically generates OpenAPI documentation, but good internal documentation is just as important. Use clear docstrings, comment complex logic, and leverage type annotations. Keep dependencies updated and automate code linting with tools like `black`, `ruff`, or `mypy`.\n\nRecommended practices:\n\n- Add `.editorconfig`, `.flake8`, and `pyproject.toml`\n- Use pre-commit hooks\n- Write tests for critical paths and edge cases\n- Document decisions in a `docs/` folder or `README.md`\n\nClean, well-documented code is not just helpful—it's professional."
+      }
+    ]
+  },
+  "es": {
+    "title": "Mejores Prácticas",
+    "sections": [
+      {
+        "title": "Estructura del Proyecto",
+        "content": "Una estructura bien organizada es crucial para la mantenibilidad, escalabilidad y colaboración. FastAPI se beneficia enormemente de una arquitectura modular que separa las responsabilidades en dominios lógicos como rutas, modelos, esquemas, servicios y configuración.\n\nEjemplo de estructura:\n\n```\nmi_aplicacion_fastapi/\n├── app/\n│   ├── api/                  # Rutas y versionado\n│   │   └── v1/\n│   │       └── endpoints/    # Archivos de ruta individuales (usuarios.py, etc.)\n│   ├── core/                 # Configuraciones y utilidades de seguridad\n│   ├── db/                   # Base de datos y sesión\n│   ├── models/               # Modelos SQLAlchemy\n│   ├── schemas/              # Esquemas Pydantic\n│   ├── services/             # Lógica de negocio / CRUD\n│   ├── main.py               # Instancia de la app FastAPI\n├── tests/                    # Pruebas unitarias e integrales\n├── alembic/                  # Migraciones de base de datos\n├── .env                      # Variables de entorno\n├── requirements.txt\n└── README.md\n```"
+      },
+      {
+        "title": "Organización del Código",
+        "content": "Dividí las responsabilidades del código en módulos claramente definidos:\n\n- **Ruteadores (`api/`)**: Lógica de rutas y HTTP\n- **Esquemas (`schemas/`)**: Validación de entrada y salida con Pydantic\n- **Modelos (`models/`)**: Entidades persistentes con SQLAlchemy\n- **Servicios o CRUD (`services/`)**: Lógica de negocio reutilizable\n- **Dependencias (`core/deps.py`)**: Inyecciones comunes como sesiones o autenticación\n- **Configuración (`core/config.py`)**: Ajustes centralizados según el entorno\n\nEsto mejora la cohesión interna del código y reduce el acoplamiento, facilitando el mantenimiento y las pruebas."
+      },
+      {
+        "title": "Manejo de Errores",
+        "content": "Centralizar el manejo de errores permite una experiencia de usuario coherente y facilita la depuración. Definí excepciones personalizadas y registralas en la app:\n\n```python\n# core/exceptions.py\nfrom fastapi import HTTPException, status\n\nclass RecursoNoEncontrado(HTTPException):\n    def __init__(self, detalle=\"Recurso no encontrado\"):\n        super().__init__(status_code=status.HTTP_404_NOT_FOUND, detail=detalle)\n\nclass SolicitudInvalida(HTTPException):\n    def __init__(self, detalle=\"Solicitud inválida\"):\n        super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=detalle)\n```\n\nEn `main.py`:\n\n```python\nfrom fastapi.responses import JSONResponse\nfrom core.exceptions import RecursoNoEncontrado, SolicitudInvalida\n\n@app.exception_handler(RecursoNoEncontrado)\ndef handler_404(request, exc):\n    return JSONResponse(status_code=exc.status_code, content={\"error\": exc.detail})\n```"
+      },
+      {
+        "title": "Mejores Prácticas de Seguridad",
+        "content": "FastAPI permite implementar seguridad robusta. Algunas recomendaciones:\n\n- Usá **contraseñas hasheadas** con `passlib`\n- Protegé rutas con **OAuth2 y tokens Bearer**\n- Guardá secretos en **variables de entorno**\n- Validá tokens con **`python-jose`**\n- Usá **HTTPS** en producción\n\nEjemplo:\n\n```python\nfrom passlib.context import CryptContext\nfrom jose import jwt, JWTError\n\npwd_context = CryptContext(schemes=[\"bcrypt\"], deprecated=\"auto\")\nSECRET_KEY = \"clave-secreta\"\nALGORITHM = \"HS256\"\n\n# Hashear\ndef get_password_hash(password):\n    return pwd_context.hash(password)\n\n# Verificar\ndef verify_password(plain_password, hashed):\n    return pwd_context.verify(plain_password, hashed)\n\n# Crear token\nfrom datetime import datetime, timedelta\n\ndef crear_token(data: dict, duracion: timedelta = timedelta(minutes=15)):\n    to_encode = data.copy()\n    to_encode.update({\"exp\": datetime.utcnow() + duracion})\n    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)\n```"
+      },
+      {
+        "title": "Documentación y Mantenibilidad",
+        "content": "FastAPI genera documentación OpenAPI automáticamente, pero es igualmente importante tener documentación interna clara. Usá docstrings explicativos, comentarios en lógica compleja y anotaciones de tipo.\n\nBuenas prácticas:\n\n- Configurá `black`, `ruff`, `mypy`\n- Usá `pre-commit` para validaciones automáticas\n- Escribí pruebas para rutas y casos límite\n- Documentá decisiones técnicas en un directorio `docs/`\n\nEl código profesional es limpio, predecible y bien documentado."
+      }
+    ]
+  }
+}

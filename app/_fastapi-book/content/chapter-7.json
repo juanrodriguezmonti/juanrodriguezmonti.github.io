@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Database Integration",
+    "sections": [
+      {
+        "title": "SQLAlchemy Setup",
+        "content": "Setting up SQLAlchemy with FastAPI:\n\n```python\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.ext.declarative import declarative_base\nfrom sqlalchemy.orm import sessionmaker\n\nSQLALCHEMY_DATABASE_URL = \"sqlite:///./sql_app.db\"\n# For PostgreSQL:\n# SQLALCHEMY_DATABASE_URL = \"postgresql://user:password@localhost/dbname\"\n\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL, connect_args={\"check_same_thread\": False}\n)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\nBase = declarative_base()\n\n# Dependency\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n```"
+      },
+      {
+        "title": "Database Models",
+        "content": "Creating SQLAlchemy models:\n\n```python\nfrom sqlalchemy import Boolean, Column, ForeignKey, Integer, String\nfrom sqlalchemy.orm import relationship\nfrom .database import Base\n\nclass User(Base):\n    __tablename__ = \"users\"\n\n    id = Column(Integer, primary_key=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)\n\n    items = relationship(\"Item\", back_populates=\"owner\")\n\nclass Item(Base):\n    __tablename__ = \"items\"\n\n    id = Column(Integer, primary_key=True, index=True)\n    title = Column(String, index=True)\n    description = Column(String, index=True)\n    owner_id = Column(Integer, ForeignKey(\"users.id\"))\n\n    owner = relationship(\"User\", back_populates=\"items\")\n```"
+      },
+      {
+        "title": "Pydantic Models",
+        "content": "Creating Pydantic models for request/response validation:\n\n```python\nfrom pydantic import BaseModel\nfrom typing import List, Optional\n\nclass ItemBase(BaseModel):\n    title: str\n    description: Optional[str] = None\n\nclass ItemCreate(ItemBase):\n    pass\n\nclass Item(ItemBase):\n    id: int\n    owner_id: int\n\n    class Config:\n        orm_mode = True\n\nclass UserBase(BaseModel):\n    email: str\n\nclass UserCreate(UserBase):\n    password: str\n\nclass User(UserBase):\n    id: int\n    is_active: bool\n    items: List[Item] = []\n\n    class Config:\n        orm_mode = True\n```"
+      },
+      {
+        "title": "CRUD Operations",
+        "content": "Implementing CRUD operations with SQLAlchemy:\n\n```python\nfrom sqlalchemy.orm import Session\nfrom . import models, schemas\nfrom fastapi import Depends, HTTPException\n\ndef get_user(db: Session, user_id: int):\n    return db.query(models.User).filter(models.User.id == user_id).first()\n\ndef get_user_by_email(db: Session, email: str):\n    return db.query(models.User).filter(models.User.email == email).first()\n\ndef get_users(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.User).offset(skip).limit(limit).all()\n\ndef create_user(db: Session, user: schemas.UserCreate):\n    hashed_password = get_password_hash(user.password)\n    db_user = models.User(email=user.email, hashed_password=hashed_password)\n    db.add(db_user)\n    db.commit()\n    db.refresh(db_user)\n    return db_user\n\ndef get_items(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.Item).offset(skip).limit(limit).all()\n\ndef create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):\n    db_item = models.Item(**item.dict(), owner_id=user_id)\n    db.add(db_item)\n    db.commit()\n    db.refresh(db_item)\n    return db_item\n```"
+      }
+    ]
+  },
+  "es": {
+    "title": "Integración con Base de Datos",
+    "sections": [
+      {
+        "title": "Configuración de SQLAlchemy",
+        "content": "Configurando SQLAlchemy con FastAPI:\n\n```python\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.ext.declarative import declarative_base\nfrom sqlalchemy.orm import sessionmaker\n\nSQLALCHEMY_DATABASE_URL = \"sqlite:///./sql_app.db\"\n# Para PostgreSQL:\n# SQLALCHEMY_DATABASE_URL = \"postgresql://usuario:contraseña@localhost/nombre_db\"\n\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL, connect_args={\"check_same_thread\": False}\n)\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\nBase = declarative_base()\n\n# Dependencia\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n```"
+      },
+      {
+        "title": "Modelos de Base de Datos",
+        "content": "Creando modelos SQLAlchemy:\n\n```python\nfrom sqlalchemy import Boolean, Column, ForeignKey, Integer, String\nfrom sqlalchemy.orm import relationship\nfrom .database import Base\n\nclass Usuario(Base):\n    __tablename__ = \"usuarios\"\n\n    id = Column(Integer, primary_key=True, index=True)\n    email = Column(String, unique=True, index=True)\n    hashed_password = Column(String)\n    is_active = Column(Boolean, default=True)\n\n    items = relationship(\"Item\", back_populates=\"owner\")\n\nclass Item(Base):\n    __tablename__ = \"items\"\n\n    id = Column(Integer, primary_key=True, index=True)\n    title = Column(String, index=True)\n    description = Column(String, index=True)\n    owner_id = Column(Integer, ForeignKey(\"usuarios.id\"))\n\n    owner = relationship(\"Usuario\", back_populates=\"items\")\n```"
+      },
+      {
+        "title": "Modelos Pydantic",
+        "content": "Creando modelos Pydantic para validación de solicitudes/respuestas:\n\n```python\nfrom pydantic import BaseModel\nfrom typing import List, Optional\n\nclass ItemBase(BaseModel):\n    title: str\n    description: Optional[str] = None\n\nclass ItemCreate(ItemBase):\n    pass\n\nclass Item(ItemBase):\n    id: int\n    owner_id: int\n\n    class Config:\n        orm_mode = True\n\nclass UsuarioBase(BaseModel):\n    email: str\n\nclass UsuarioCreate(UsuarioBase):\n    password: str\n\nclass Usuario(UsuarioBase):\n    id: int\n    is_active: bool\n    items: List[Item] = []\n\n    class Config:\n        orm_mode = True\n```"
+      },
+      {
+        "title": "Operaciones CRUD",
+        "content": "Implementando operaciones CRUD con SQLAlchemy:\n\n```python\nfrom sqlalchemy.orm import Session\nfrom . import models, schemas\nfrom fastapi import Depends, HTTPException\n\ndef get_user(db: Session, user_id: int):\n    return db.query(models.Usuario).filter(models.Usuario.id == user_id).first()\n\ndef get_user_by_email(db: Session, email: str):\n    return db.query(models.Usuario).filter(models.Usuario.email == email).first()\n\ndef get_users(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.Usuario).offset(skip).limit(limit).all()\n\ndef create_user(db: Session, user: schemas.UsuarioCreate):\n    hashed_password = get_password_hash(user.password)\n    db_user = models.Usuario(email=user.email, hashed_password=hashed_password)\n    db.add(db_user)\n    db.commit()\n    db.refresh(db_user)\n    return db_user\n\ndef get_items(db: Session, skip: int = 0, limit: int = 100):\n    return db.query(models.Item).offset(skip).limit(limit).all()\n\ndef create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):\n    db_item = models.Item(**item.dict(), owner_id=user_id)\n    db.add(db_item)\n    db.commit()\n    db.refresh(db_item)\n    return db_item\n```"
+      }
+    ]
+  }
+}

@@ -30,7 +30,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16">
       <Link
-        href="/blog"
+        href="/writings"
         className="inline-flex items-center gap-2 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 mb-8"
       >
         <ArrowLeft className="w-4 h-4" />

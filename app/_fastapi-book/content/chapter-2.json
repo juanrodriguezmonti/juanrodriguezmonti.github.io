@@ -1,0 +1,53 @@
+{
+    "en": {
+      "title": "Installation and Setup",
+      "sections": [
+        {
+          "title": "Prerequisites",
+          "content": "Before starting with FastAPI, make sure you have the essential tools installed and configured on your machine:\n\n- **Python 3.7 or newer**: FastAPI requires Python 3.7+ due to its reliance on type hints and async features.\n- **pip**: The standard Python package manager, used to install dependencies.\n- **Virtual environment tools**: Such as `venv` or `virtualenv`, to isolate your project.\n- **A modern code editor**: VS Code, PyCharm, Sublime Text. VS Code is highly recommended for its Python extension.\n- **Terminal or Command Prompt**: For running commands and managing the environment.\n\nIt's also helpful (but optional) to install:\n- Git (for version control)\n- curl or httpie (for testing APIs from terminal)\n- Docker (if deploying or containerizing your app later)"
+        },
+        {
+          "title": "Creating a Virtual Environment",
+          "content": "Using a virtual environment prevents dependency conflicts and keeps your project isolated.\n\nHere’s how to set one up:\n\n```bash\n# Create a directory for your app\nmkdir my_fastapi_app\ncd my_fastapi_app\n\n# Create a virtual environment\npython -m venv venv\n\n# Activate it:\n# Windows\nvenv\\Scripts\\activate\n# macOS/Linux\nsource venv/bin/activate\n```\n\nOnce activated, your terminal will show the environment name. Every package installed with pip will now be local to this project."
+        },
+        {
+          "title": "Installing FastAPI",
+          "content": "Now, install FastAPI and an ASGI server to run it. Uvicorn is the most common choice:\n\n```bash\npip install fastapi uvicorn[standard]\n```\n\nThe `[standard]` extra installs recommended packages like `watchgod` for reload and `httptools` for speed.\n\nAfter installing, you can optionally freeze dependencies:\n\n```bash\npip freeze > requirements.txt\n```\n\nThis helps you share or deploy your project with consistent versions across environments."
+        },
+        {
+          "title": "Your First FastAPI Application",
+          "content": "Now let’s write your first FastAPI application:\n\nCreate a file `main.py`:\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"message\": \"Hello, FastAPI!\"}\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    return {\"item_id\": item_id}\n```\n\nRun the app with:\n\n```bash\nuvicorn main:app --reload\n```\n\nThe `--reload` flag allows automatic reloading when code changes. Visit:\n- `http://127.0.0.1:8000/docs` – Swagger UI\n- `http://127.0.0.1:8000/redoc` – ReDoc alternative\n\nThese docs are generated automatically based on your code."
+        },
+        {
+          "title": "Project Structure",
+          "content": "As your project grows, organizing it properly becomes critical. A clean structure improves maintainability, testing, and team collaboration.\n\nA typical scalable FastAPI project layout might look like:\n\n```\nmy_fastapi_app/\n├── app/\n│   ├── __init__.py\n│   ├── main.py          # Entry point (Uvicorn loads from here)\n│   ├── api/\n│   │   ├── __init__.py\n│   │   └── endpoints/\n│   │       ├── __init__.py\n│   │       └── items.py\n│   ├── models/          # Pydantic models for data validation\n│   │   ├── __init__.py\n│   │   └── item.py\n│   ├── core/            # App config, settings\n│   │   └── config.py\n│   └── services/        # Business logic\n├── tests/               # Test suite\n│   └── test_main.py\n├── .env                 # Environment variables\n├── requirements.txt\n├── .gitignore\n└── README.md\n```\n\nThis structure separates concerns and makes your app easier to expand, test, and deploy."
+        }
+      ]
+    },
+    "es": {
+      "title": "Instalación y Configuración",
+      "sections": [
+        {
+          "title": "Prerrequisitos",
+          "content": "Antes de comenzar con FastAPI, asegúrate de tener las herramientas básicas instaladas:\n\n- **Python 3.7 o superior**: FastAPI depende de características modernas como anotaciones de tipo y funciones async.\n- **pip**: El gestor de paquetes de Python.\n- **Entornos virtuales**: Como `venv`, para aislar tu proyecto.\n- **Editor de código**: VS Code, PyCharm o Sublime Text. Se recomienda VS Code por su integración con Python.\n- **Terminal o consola de comandos**: Para ejecutar instrucciones.\n\nOpcionalmente:\n- Git (para control de versiones)\n- curl o httpie (para probar APIs desde consola)\n- Docker (si planeas desplegar o contenerizar tu app)"
+        },
+        {
+          "title": "Creando un Entorno Virtual",
+          "content": "Utilizar un entorno virtual evita conflictos entre dependencias y mantiene el proyecto limpio.\n\n```bash\n# Crea el directorio del proyecto\nmkdir mi_app_fastapi\ncd mi_app_fastapi\n\n# Crea un entorno virtual\npython -m venv venv\n\n# Actívalo:\n# Windows\nvenv\\Scripts\\activate\n# macOS/Linux\nsource venv/bin/activate\n```\n\nUna vez activado, verás el nombre del entorno en tu consola. Todo lo que instales con `pip` quedará aislado en esta carpeta."
+        },
+        {
+          "title": "Instalando FastAPI",
+          "content": "Con el entorno activado, instala FastAPI y Uvicorn:\n\n```bash\npip install fastapi uvicorn[standard]\n```\n\nEl sufijo `[standard]` incluye herramientas útiles como recarga automática (`watchgod`) y servidores rápidos (`httptools`).\n\nPuedes guardar las dependencias:\n\n```bash\npip freeze > requirements.txt\n```\n\nEsto facilita compartir tu proyecto o desplegarlo con versiones fijas."
+        },
+        {
+          "title": "Tu Primera Aplicación FastAPI",
+          "content": "Crea un archivo llamado `main.py` con el siguiente contenido:\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"mensaje\": \"¡Hola FastAPI!\"}\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    return {\"item_id\": item_id}\n```\n\nEjecuta con:\n\n```bash\nuvicorn main:app --reload\n```\n\nLa opción `--reload` recarga automáticamente cuando cambias tu código.\n\nVisita:\n- `http://127.0.0.1:8000/docs` – Documentación Swagger\n- `http://127.0.0.1:8000/redoc` – Documentación alternativa\n\nFastAPI genera esta documentación en base a tu código."
+        },
+        {
+          "title": "Estructura del Proyecto",
+          "content": "Una estructura organizada te permitirá escalar tu aplicación de forma más profesional.\n\nUna estructura común y robusta sería:\n\n```\nmi_app_fastapi/\n├── app/\n│   ├── __init__.py\n│   ├── main.py          # Punto de entrada\n│   ├── api/\n│   │   ├── __init__.py\n│   │   └── endpoints/\n│   │       ├── __init__.py\n│   │       └── items.py\n│   ├── models/          # Modelos de validación Pydantic\n│   │   ├── __init__.py\n│   │   └── item.py\n│   ├── core/            # Configuración y ajustes\n│   │   └── config.py\n│   └── services/        # Lógica de negocio\n├── tests/               # Pruebas automatizadas\n│   └── test_main.py\n├── .env                 # Variables de entorno\n├── requirements.txt\n├── .gitignore\n└── README.md\n```\n\nEsto separa responsabilidades, facilita el mantenimiento y mejora la colaboración en equipos."
+        }
+      ]
+    }
+  }
+  

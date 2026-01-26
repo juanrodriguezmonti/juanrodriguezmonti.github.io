@@ -1,0 +1,53 @@
+{
+    "en": {
+      "title": "Path Parameters and Query Parameters",
+      "sections": [
+        {
+          "title": "Path Parameters",
+          "content": "Path parameters are an integral part of RESTful API design. They are used to capture values embedded directly within the URL path, usually to uniquely identify a resource. These values are mandatory and are defined using curly braces in the endpoint route.\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    return {\"item_id\": item_id}\n```\n\nIn this example, FastAPI extracts the `item_id` from the URL, converts it to an integer, and validates it. If a non-integer value is provided, FastAPI responds with a 422 error and a structured explanation.\n\n### Advanced Validation with `Path`\nUsing `Path` allows further constraint definitions:\n```python\nfrom fastapi import Path\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int = Path(..., title=\"The ID of the item\", ge=1, le=10000)):\n    return {\"item_id\": item_id}\n```\nHere, `item_id` must be an integer between 1 and 10,000, and the metadata is included in the OpenAPI schema.\n\n### Use Cases and Best Practices\n- Use for identifiers (e.g., `/users/{user_id}`, `/orders/{order_id}`).\n- Avoid placing optional or sensitive data in the path.\n- Combine with versioning (`/api/v1/...`) for long-term stability."
+        },
+        {
+          "title": "Query Parameters",
+          "content": "Query parameters are optional and provide flexibility in API usage. They are used for filtering, pagination, searching, and other modifiers of the resource retrieval.\n\n```python\nfrom fastapi import FastAPI\nfrom typing import Optional\n\napp = FastAPI()\n\n@app.get(\"/items/\")\ndef read_items(skip: int = 0, limit: int = 10, q: Optional[str] = None):\n    return {\"skip\": skip, \"limit\": limit, \"q\": q}\n```\n\nHere, `skip` and `limit` are used for pagination, and `q` is an optional search query.\n\n### With Query Validation\n```python\nfrom fastapi import Query\n\n@app.get(\"/products\")\ndef list_products(search: Optional[str] = Query(None, max_length=50), page: int = Query(1, ge=1), page_size: int = Query(10, le=100)):\n    return {\"search\": search, \"page\": page, \"page_size\": page_size}\n```\n\n### Best Practices\n- Use defaults to improve usability.\n- Document clearly using `description` in `Query()`.\n- Validate values to prevent over-fetching or misuse."
+        },
+        {
+          "title": "Combining Path and Query Parameters",
+          "content": "It's common to use path parameters to locate a resource and query parameters to modify how it's retrieved.\n\n```python\n@app.get(\"/posts/{post_id}/comments\")\ndef get_comments(post_id: int, sort_by: Optional[str] = \"date\"):\n    return {\"post_id\": post_id, \"sort_by\": sort_by}\n```\n\nIn this case, `post_id` identifies the resource and `sort_by` customizes the response."
+        },
+        {
+          "title": "Request Body vs Query Parameters",
+          "content": "Use **query parameters** for filtering, sorting, or toggles.\nUse **request bodies** for:\n- Creating or updating data\n- Complex inputs (e.g., nested JSON)\n- Large or sensitive information\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\nfrom typing import Optional\n\nclass Item(BaseModel):\n    name: str\n    description: Optional[str] = None\n    price: float\n    tax: Optional[float] = None\n\napp = FastAPI()\n\n@app.post(\"/items/\")\ndef create_item(item: Item):\n    return item\n```\n\nThis approach ensures clarity and leverages FastAPI's built-in validation and docs."
+        },
+        {
+          "title": "Response Models",
+          "content": "FastAPI allows you to declare a `response_model` to validate and document the structure of your API's output.\n\n```python\nfrom pydantic import BaseModel\nfrom typing import List\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\nclass ItemResponse(Item):\n    id: int\n\n@app.get(\"/items/\", response_model=List[ItemResponse])\ndef read_items():\n    return [\n        {\"id\": 1, \"name\": \"Book\", \"price\": 12.0},\n        {\"id\": 2, \"name\": \"Pen\", \"price\": 1.5}\n    ]\n```\n\nUse it to:\n- Ensure output format consistency\n- Document expected response\n- Filter out internal data"
+        }
+      ]
+    },
+    "es": {
+      "title": "Parámetros de Ruta y Parámetros de Consulta",
+      "sections": [
+        {
+          "title": "Parámetros de Ruta",
+          "content": "Los parámetros de ruta son parte esencial del diseño RESTful. Se utilizan para identificar un recurso específico dentro de la URL y son obligatorios.\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    return {\"item_id\": item_id}\n```\n\nFastAPI convierte y valida automáticamente `item_id`. Si el valor es incorrecto, devuelve un error `422` detallado.\n\n### Validación Avanzada\n```python\nfrom fastapi import Path\n\n@app.get(\"/items/{item_id}\")\ndef read_item(item_id: int = Path(..., title=\"ID del ítem\", ge=1, le=10000)):\n    return {\"item_id\": item_id}\n```\n\nEsto impone un rango y mejora la documentación.\n\n### Buenas Prácticas\n- Usa para identificar recursos concretos.\n- Evita incluir datos sensibles en la ruta.\n- Utiliza versión y agrupamiento en rutas (`/api/v1/usuarios/{id}`)."
+        },
+        {
+          "title": "Parámetros de Consulta",
+          "content": "Los parámetros de consulta son opcionales y se usan para modificar la forma en que se accede a un recurso: paginación, filtros, búsquedas, etc.\n\n```python\nfrom fastapi import FastAPI\nfrom typing import Optional\n\napp = FastAPI()\n\n@app.get(\"/items/\")\ndef read_items(skip: int = 0, limit: int = 10, q: Optional[str] = None):\n    return {\"skip\": skip, \"limit\": limit, \"q\": q}\n```\n\n### Validación con Query\n```python\nfrom fastapi import Query\n\n@app.get(\"/productos\")\ndef listar_productos(busqueda: Optional[str] = Query(None, max_length=50), pagina: int = Query(1, ge=1), por_pagina: int = Query(10, le=100)):\n    return {\"busqueda\": busqueda, \"pagina\": pagina, \"por_pagina\": por_pagina}\n```\n\n### Buenas Prácticas\n- Usa nombres descriptivos.\n- Proporciona valores predeterminados.\n- Agrega descripciones para documentar."
+        },
+        {
+          "title": "Combinación de Parámetros",
+          "content": "Frecuentemente se usan ambos tipos juntos. Por ejemplo:\n```python\n@app.get(\"/posts/{post_id}/comentarios\")\ndef get_comentarios(post_id: int, ordenar_por: Optional[str] = \"fecha\"):\n    return {\"post_id\": post_id, \"ordenar_por\": ordenar_por}\n```\nEsto permite identificar y modificar el recurso solicitado."
+        },
+        {
+          "title": "Cuerpo de Solicitud vs Parámetros",
+          "content": "**Parámetros de consulta:** para filtros, opciones y valores opcionales.\n\n**Cuerpo de solicitud:** para datos estructurados complejos, como creaciones y actualizaciones.\n\n```python\nfrom pydantic import BaseModel\nfrom typing import Optional\n\nclass Item(BaseModel):\n    name: str\n    description: Optional[str]\n    price: float\n    tax: Optional[float]\n\n@app.post(\"/items/\")\ndef create_item(item: Item):\n    return item\n```\n\nEsto mejora la validación, claridad y documentación del API."
+        },
+        {
+          "title": "Modelos de Respuesta",
+          "content": "Los modelos de respuesta (`response_model`) garantizan consistencia y documentación automática en la salida de la API.\n\n```python\nfrom pydantic import BaseModel\nfrom typing import List\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\nclass ItemResponse(Item):\n    id: int\n\n@app.get(\"/items/\", response_model=List[ItemResponse])\ndef read_items():\n    return [\n        {\"id\": 1, \"name\": \"Libro\", \"price\": 12.0},\n        {\"id\": 2, \"name\": \"Lapicera\", \"price\": 1.5}\n    ]\n```\n\n- Valida la salida\n- Oculta campos sensibles\n- Mejora la interoperabilidad con clientes externos"
+        }
+      ]
+    }
+  }
+  

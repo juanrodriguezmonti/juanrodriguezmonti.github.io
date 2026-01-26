@@ -11,6 +11,9 @@ const nextConfig = {
   basePath: '',
   assetPrefix: '',
   trailingSlash: true,
+  devIndicators: {
+    buildActivity: false,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

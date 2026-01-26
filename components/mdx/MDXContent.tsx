@@ -1,9 +1,14 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { cn } from '@/lib/utils'
+import CSVSDiagrams from '@/components/csvs-diagrams'
 
 interface MDXContentProps {
   source: string
   className?: string
+}
+
+const components = {
+  CSVSDiagrams,
 }
 
 export function MDXContent({ source, className }: MDXContentProps) {
@@ -47,7 +52,7 @@ export function MDXContent({ source, className }: MDXContentProps) {
       'prose-p:my-4 prose-headings:mt-8 prose-headings:mb-4',
       className
     )}>
-      <MDXRemote source={source} />
+      <MDXRemote source={source} components={components} />
     </article>
   )
 } 

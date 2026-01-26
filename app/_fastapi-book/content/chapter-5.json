@@ -1,0 +1,60 @@
+{
+  "en": {
+    "title": "Dependency Injection",
+    "sections": [
+      {
+        "title": "Understanding Dependencies",
+        "content": "Dependency injection is a software design pattern that allows components to receive their dependencies from an external source rather than creating them internally. In FastAPI, this is achieved using the `Depends` class. This approach enhances code modularity, testing, and reusability.\n\nFastAPI dependencies are Python functions that are declared as arguments to your path operation functions. FastAPI automatically resolves them before running your route logic:\n\n```python\nfrom fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef common_parameters(q: str = None, skip: int = 0, limit: int = 100):\n    return {\"q\": q, \"skip\": skip, \"limit\": limit}\n\n@app.get(\"/items/\")\ndef read_items(commons: dict = Depends(common_parameters)):\n    return commons\n```\n\nIn this example, the `common_parameters` dependency abstracts common logic that can be reused across multiple endpoints."
+      },
+      {
+        "title": "Common Dependencies",
+        "content": "Dependencies in FastAPI are useful for many scenarios such as:\n\n- Reusing logic (authentication, validation, pagination)\n- Connecting to databases\n- Accessing request/session state\n- Injecting service classes or configurations\n\nExample:\n\n```python\nfrom fastapi import Depends, HTTPException, status\nfrom fastapi.security import OAuth2PasswordBearer\n\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n\ndef get_current_user(token: str = Depends(oauth2_scheme)):\n    user = fake_decode_token(token)\n    if not user:\n        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=\"Invalid credentials\")\n    return user\n\n@app.get(\"/users/me\")\ndef read_users_me(current_user = Depends(get_current_user)):\n    return current_user\n```\n\nThis example shows an authentication dependency using OAuth2."
+      },
+      {
+        "title": "Database Dependencies",
+        "content": "Database connections are commonly handled using dependencies. This allows consistent session management and clean-up logic:\n\n```python\nfrom sqlalchemy.orm import Session\nfrom .database import SessionLocal\n\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n```\n\nThis dependency can then be injected into route handlers:\n\n```python\n@app.get(\"/items/\")\ndef read_items(db: Session = Depends(get_db)):\n    return db.query(Item).all()\n```\n\nThis design ensures the database session is properly opened and closed for each request."
+      },
+      {
+        "title": "Nested Dependencies",
+        "content": "FastAPI supports dependencies that themselves depend on other dependencies, called nested dependencies. This is useful when composing services or adding layers like authentication and authorization.\n\n```python\nfrom fastapi import Depends, HTTPException, status\n\n# Token-based authentication dependency\n\ndef get_current_user(token: str = Depends(oauth2_scheme)):\n    user = decode_token(token)\n    if user is None:\n        raise HTTPException(status_code=401, detail=\"Unauthorized\")\n    return user\n\n# Active user validation dependency\n\ndef get_active_user(current_user = Depends(get_current_user)):\n    if not current_user.is_active:\n        raise HTTPException(status_code=400, detail=\"Inactive user\")\n    return current_user\n\n@app.get(\"/profile\")\ndef get_profile(user = Depends(get_active_user)):\n    return user\n```\n\nNested dependencies allow you to build reusable and composable security or logic layers."
+      },
+      {
+        "title": "Using Classes as Dependencies",
+        "content": "FastAPI also allows you to use classes as dependencies, which is helpful when managing state or encapsulating logic.\n\n```python\nclass Pagination:\n    def __init__(self, skip: int = 0, limit: int = 10):\n        self.skip = skip\n        self.limit = limit\n\n@app.get(\"/items/\")\ndef list_items(pagination: Pagination = Depends()):\n    return {\"skip\": pagination.skip, \"limit\": pagination.limit}\n```\n\nThis approach enables structured and testable design patterns, especially in larger applications."
+      },
+      {
+        "title": "Benefits of Dependency Injection",
+        "content": "The main advantages of using dependency injection in FastAPI include:\n\n- **Decoupling**: Logic is modular and easier to change or extend.\n- **Testability**: Dependencies can be replaced with mocks or stubs.\n- **Reusability**: Logic such as database sessions or authentication can be reused across endpoints.\n- **Readability**: Route functions remain focused on business logic, with external concerns abstracted."
+      }
+    ]
+  },
+  "es": {
+    "title": "Inyección de Dependencias",
+    "sections": [
+      {
+        "title": "Entendiendo las Dependencias",
+        "content": "La inyección de dependencias es un patrón de diseño de software que permite que los componentes reciban sus dependencias desde una fuente externa en lugar de crearlas internamente. En FastAPI, esto se logra utilizando la clase `Depends`. Este enfoque mejora la modularidad, las pruebas y la reutilización del código.\n\nLas dependencias en FastAPI son funciones de Python que se declaran como argumentos de tus funciones de operación de ruta. FastAPI las resuelve automáticamente antes de ejecutar la lógica de la ruta:\n\n```python\nfrom fastapi import FastAPI, Depends\n\napp = FastAPI()\n\ndef common_parameters(q: str = None, skip: int = 0, limit: int = 100):\n    return {\"q\": q, \"skip\": skip, \"limit\": limit}\n\n@app.get(\"/items/\")\ndef read_items(commons: dict = Depends(common_parameters)):\n    return commons\n```\n\nEn este ejemplo, la dependencia `common_parameters` abstrae la lógica común que puede reutilizarse en múltiples endpoints."
+      },
+      {
+        "title": "Dependencias Comunes",
+        "content": "Las dependencias en FastAPI son útiles en muchos escenarios como:\n\n- Reutilizar lógica (autenticación, validación, paginación)\n- Conexión a bases de datos\n- Acceso al estado de la solicitud/sesión\n- Inyección de clases de servicios o configuraciones\n\nEjemplo:\n\n```python\nfrom fastapi import Depends, HTTPException, status\nfrom fastapi.security import OAuth2PasswordBearer\n\noauth2_scheme = OAuth2PasswordBearer(tokenUrl=\"token\")\n\ndef get_current_user(token: str = Depends(oauth2_scheme)):\n    user = fake_decode_token(token)\n    if not user:\n        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=\"Credenciales inválidas\")\n    return user\n\n@app.get(\"/users/me\")\ndef read_users_me(current_user = Depends(get_current_user)):\n    return current_user\n```\n\nEste ejemplo muestra una dependencia de autenticación usando OAuth2."
+      },
+      {
+        "title": "Dependencias de Base de Datos",
+        "content": "Las conexiones a bases de datos se gestionan comúnmente usando dependencias. Esto permite una gestión coherente de la sesión y lógica de limpieza:\n\n```python\nfrom sqlalchemy.orm import Session\nfrom .database import SessionLocal\n\ndef get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n```\n\nEsta dependencia puede inyectarse luego en los controladores de rutas:\n\n```python\n@app.get(\"/items/\")\ndef read_items(db: Session = Depends(get_db)):\n    return db.query(Item).all()\n```\n\nEste diseño asegura que la sesión de base de datos se abra y cierre correctamente por cada solicitud."
+      },
+      {
+        "title": "Dependencias Anidadas",
+        "content": "FastAPI admite dependencias que a su vez dependen de otras dependencias, llamadas dependencias anidadas. Esto es útil al componer servicios o agregar capas como autenticación y autorización.\n\n```python\nfrom fastapi import Depends, HTTPException, status\n\n# Dependencia de autenticación basada en token\n\ndef get_current_user(token: str = Depends(oauth2_scheme)):\n    user = decode_token(token)\n    if user is None:\n        raise HTTPException(status_code=401, detail=\"No autorizado\")\n    return user\n\n# Dependencia para validar si el usuario está activo\n\ndef get_active_user(current_user = Depends(get_current_user)):\n    if not current_user.is_active:\n        raise HTTPException(status_code=400, detail=\"Usuario inactivo\")\n    return current_user\n\n@app.get(\"/profile\")\ndef get_profile(user = Depends(get_active_user)):\n    return user\n```\n\nLas dependencias anidadas te permiten construir capas reutilizables y componibles de seguridad o lógica."
+      },
+      {
+        "title": "Usando Clases como Dependencias",
+        "content": "FastAPI también permite usar clases como dependencias, lo cual es útil al gestionar estado o encapsular lógica.\n\n```python\nclass Pagination:\n    def __init__(self, skip: int = 0, limit: int = 10):\n        self.skip = skip\n        self.limit = limit\n\n@app.get(\"/items/\")\ndef list_items(pagination: Pagination = Depends()):\n    return {\"skip\": pagination.skip, \"limit\": pagination.limit}\n```\n\nEste enfoque permite patrones de diseño estructurados y testeables, especialmente en aplicaciones grandes."
+      },
+      {
+        "title": "Beneficios de la Inyección de Dependencias",
+        "content": "Las principales ventajas de usar inyección de dependencias en FastAPI incluyen:\n\n- **Desacoplamiento**: La lógica es modular y más fácil de cambiar o extender.\n- **Testeabilidad**: Las dependencias pueden reemplazarse con mocks o stubs.\n- **Reutilización**: Lógica como sesiones de base de datos o autenticación puede reutilizarse en múltiples endpoints.\n- **Legibilidad**: Las funciones de ruta se enfocan en la lógica de negocio, con las preocupaciones externas abstraídas."
+      }
+    ]
+  }
+}

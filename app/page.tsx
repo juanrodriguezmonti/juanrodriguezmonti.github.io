@@ -30,7 +30,7 @@ export default async function Home() {
               </p>
               <div className="flex flex-wrap items-center gap-6">
                 <Link
-                  href="/blog"
+                  href="/writings"
                   className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2"
                 >
                   Read my articles <ArrowUpRight className="w-4 h-4" />
@@ -133,7 +133,7 @@ export default async function Home() {
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold">Recent Writing</h2>
             <Link
-              href="/blog"
+              href="/writings"
               className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors inline-flex items-center gap-2"
             >
               View all <ArrowUpRight className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default async function Home() {
           {recentPosts.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-8">
               {recentPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`}>
+                <Link key={post.slug} href={`/writings/${post.slug}`}>
                   <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover-card h-full border border-gray-200 dark:border-gray-700">
                     <div className="p-6">
                       <time className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">

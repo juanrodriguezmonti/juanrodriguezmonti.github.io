@@ -23,7 +23,7 @@ export default async function BlogPage() {
       {posts.length > 0 ? (
         <div className="grid gap-8">
           {posts.map((post, index) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`}>
+            <Link key={post.slug} href={`/writings/${post.slug}`}>
               <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 hover-card border border-red-100 dark:border-red-900/30 transition-all duration-200 hover:shadow-md">
                 <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                   <time dateTime={post.date} className="font-medium bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-full">

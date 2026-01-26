@@ -1,0 +1,37 @@
+{
+    "en": {
+      "title": "Introduction to FastAPI",
+      "sections": [
+        {
+          "title": "What is FastAPI?",
+          "content": "FastAPI is a modern, high-performance web framework for building APIs with Python 3.7+ and newer. It is built entirely around Python's standard type hints, which means your editor can assist you with autocompletion, type checking, and in many cases, even validation—right from your code.\n\nCreated by Sebastián Ramírez in 2018, FastAPI was designed with the philosophy of developer happiness, performance, and standards compliance. Unlike older frameworks that often required verbose or redundant code, FastAPI leverages Python's typing system and Pydantic models to produce clear, concise, and efficient APIs.\n\nIts key features include:\n\n- **Fast**: Achieves performance similar to NodeJS and Go thanks to ASGI and Starlette.\n- **Type-safe**: Built around Python type annotations to detect errors early.\n- **Self-documenting**: Automatically generates OpenAPI docs at `/docs` and `/redoc`.\n- **Intuitive**: Editor-friendly with autocompletion and linting support.\n- **Production-ready**: Used by companies like Microsoft, Uber, and Netflix.\n- **Short and clean code**: Reduces duplication while increasing clarity.\n\nFastAPI is especially well-suited for microservices, REST APIs, and machine learning backends where performance, rapid iteration, and scalability matter."
+        },
+        {
+          "title": "Why FastAPI?",
+          "content": "There are many Python frameworks available—Flask, Django, Tornado, etc.—so why choose FastAPI?\n\nFastAPI is not just another framework; it introduces a different approach to writing APIs by putting type annotations and automatic validation at the center of the developer experience.\n\nFastAPI is built on two core libraries:\n\n- **Starlette**: An ASGI (Asynchronous Server Gateway Interface) toolkit for building high-performance web services. It handles routing, middleware, background tasks, WebSockets, and more.\n- **Pydantic**: A robust library for data parsing and validation, based on Python type hints. It turns plain classes into powerful data models with automatic validation, serialization, and documentation.\n\nBenefits of choosing FastAPI include:\n- Asynchronous support out-of-the-box (ideal for modern APIs)\n- Less boilerplate and cleaner code\n- Industry-standard documentation support (OpenAPI)\n- Built-in OAuth2, JWT, and dependency injection systems\n- Great performance compared to other Python-based frameworks\n\nThis combination of features makes FastAPI ideal for both startups and enterprise applications."
+        },
+        {
+          "title": "Getting Started",
+          "content": "To get started, you’ll need Python 3.7 or higher. First, create a virtual environment (recommended):\n\n```bash\npython -m venv env\nsource env/bin/activate  # or .\\env\\Scripts\\activate on Windows\n```\n\nThen, install FastAPI and Uvicorn:\n\n```bash\npip install fastapi uvicorn\n```\n\nNow you can create your first app in a file called `main.py`:\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"message\": \"Hello World\"}\n```\n\nRun it using Uvicorn:\n\n```bash\nuvicorn main:app --reload\n```\n\nVisit `http://127.0.0.1:8000/docs` to explore your live OpenAPI documentation.\n\nFrom here, you can begin adding routes, models, and business logic to your API in a scalable and maintainable way."
+        }
+      ]
+    },
+    "es": {
+      "title": "Introducción a FastAPI",
+      "sections": [
+        {
+          "title": "¿Qué es FastAPI?",
+          "content": "FastAPI es un framework web moderno y de alto rendimiento para construir APIs con Python 3.7+ o superior. Se basa completamente en las anotaciones de tipo estándar de Python, lo que permite que tu editor proporcione autocompletado, verificación de tipos y validación, incluso antes de ejecutar tu código.\n\nCreado por Sebastián Ramírez en 2018, FastAPI nació con una filosofía centrada en la felicidad del desarrollador, el rendimiento y la compatibilidad con estándares abiertos. A diferencia de frameworks más antiguos que requieren código redundante o repetitivo, FastAPI aprovecha el tipado estático de Python y los modelos Pydantic para crear APIs claras, concisas y eficientes.\n\nSus características principales son:\n\n- **Rápido**: Rendimiento comparable con NodeJS y Go, gracias a ASGI y Starlette.\n- **Basado en tipos**: Utiliza anotaciones para detectar errores en tiempo de desarrollo.\n- **Autodocumentado**: Genera documentación OpenAPI automática en `/docs` y `/redoc`.\n- **Intuitivo**: Soporte completo para editores con autocompletado.\n- **Preparado para producción**: Utilizado por empresas como Microsoft, Netflix y Uber.\n- **Código limpio y conciso**: Reduce duplicación sin sacrificar claridad.\n\nFastAPI es especialmente útil en arquitecturas modernas como microservicios, APIs REST y backends de machine learning, donde la velocidad y la escalabilidad son claves."
+        },
+        {
+          "title": "¿Por qué FastAPI?",
+          "content": "Existen muchos frameworks en el ecosistema de Python—Flask, Django, Tornado, etc.—entonces, ¿por qué elegir FastAPI?\n\nFastAPI no es solo otro framework; representa un enfoque innovador en la construcción de APIs al poner las anotaciones de tipo y la validación automática en el centro del proceso de desarrollo.\n\nEstá construido sobre dos bibliotecas clave:\n\n- **Starlette**: Un toolkit ASGI liviano para construir servicios web asincrónicos de alto rendimiento. Proporciona rutas, middleware, tareas en segundo plano, WebSockets y más.\n- **Pydantic**: Una biblioteca poderosa para validación de datos y configuración basada en las anotaciones de tipo de Python. Convierte clases simples en modelos robustos con validación automática y serialización.\n\nVentajas de usar FastAPI:\n- Soporte completo para programación asíncrona\n- Menos código repetitivo y mayor legibilidad\n- Soporte nativo para documentación con OpenAPI\n- Sistema de autenticación (OAuth2, JWT) y dependencias incorporado\n- Gran rendimiento en comparación con otros frameworks en Python\n\nEstas características lo convierten en una excelente elección tanto para proyectos pequeños como para sistemas de misión crítica en empresas."
+        },
+        {
+          "title": "Comenzando",
+          "content": "Para comenzar, necesitas Python 3.7 o superior. Se recomienda crear un entorno virtual:\n\n```bash\npython -m venv env\nsource env/bin/activate  # o .\\env\\Scripts\\activate en Windows\n```\n\nLuego, instala FastAPI y Uvicorn:\n\n```bash\npip install fastapi uvicorn\n```\n\nCrea tu primer archivo, por ejemplo `main.py`:\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"mensaje\": \"Hola Mundo\"}\n```\n\nEjecuta tu aplicación con Uvicorn:\n\n```bash\nuvicorn main:app --reload\n```\n\nAbre tu navegador y visita `http://127.0.0.1:8000/docs` para ver la documentación interactiva generada automáticamente.\n\nDesde aquí, puedes empezar a agregar rutas, modelos y lógica de negocio para construir tu API de forma profesional y escalable."
+        }
+      ]
+    }
+  }
+  

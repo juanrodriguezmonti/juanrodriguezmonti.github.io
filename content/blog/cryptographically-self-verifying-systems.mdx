@@ -1,0 +1,244 @@
+---
+title: "Cryptographically Self-Verifying Systems: What If We Stopped Trusting Our Own Infrastructure?"
+date: "2026-01-26"
+description: "Introducing CSVS, a system-level design pattern that makes operational infrastructure untrusted by design, enabling post-hoc verification using only publicly observable artifacts"
+excerpt: "What if we didn't have to trust our infrastructure? CSVS enables any third party to verify correctness using only publicly observable artifacts, even when the infrastructure is fully malicious."
+---
+
+# Cryptographically Self-Verifying Systems: What If We Stopped Trusting Our Own Infrastructure?
+
+## When the Backend Becomes the Adversary
+
+In 2025, the average cost of a data breach exceeded $4.4 million. Insider threats remain among the most damaging attack vectors. Yet our most critical digital processes—vulnerability disclosure, regulatory filings, incident reporting—still fundamentally rely on trusting the infrastructure that runs them.
+
+What if we didn't have to?
+
+I'm introducing **Cryptographically Self-Verifying Systems (CSVS)**: a system-level design pattern that makes operational infrastructure untrusted by design. CSVS enables any third party to verify correctness using only publicly observable artifacts, even when the infrastructure is fully malicious.
+
+The key insight? Replace institutional trust with cryptographic evidence that anyone can independently validate.
+
+## The Problem: Trust Assumptions That Keep Breaking
+
+Consider a security researcher submitting a critical zero-day vulnerability to a bug bounty platform. They must trust that:
+
+- The platform won't read the vulnerability before disclosure
+- The submission timestamp won't be backdated
+- The content won't be modified or deleted
+- The disclosure will happen as agreed
+
+These aren't theoretical concerns. History shows us:
+
+- **Coordinated disclosure platforms** have been compromised, exposing undisclosed vulnerabilities
+- **Regulatory filing systems** face pressure to "correct" inconvenient submissions
+- **Research registries** have been accused of allowing post-hoc modifications
+- **Bug bounty platforms** operate as single points of trust in high-stakes security processes
+
+The fundamental issue: we're asking people to trust systems that have every capability—and sometimes every incentive—to violate that trust.
+
+## The CSVS Answer: Backend Blindness
+
+CSVS introduces a property I call **Backend Blindness**: the infrastructure cannot access protected payloads prior to authorized disclosure, even under full compromise. This isn't enforced by access control or audit logs—it's enforced by the semantic security of cryptographic primitives.
+
+Here's how it works at a conceptual level:
+
+<CSVSDiagrams />
+
+### 1. Submission (Blinded)
+
+A submitter creates an artifact containing:
+- Their payload, encrypted with the disclosure authority's public key
+- A cryptographic hash of the payload
+- A digital signature binding them to the submission
+- A transcript containing metadata and fingerprints
+
+The infrastructure receives and stores this artifact but **cannot decrypt it**. The encryption uses hybrid cryptography (ML-KEM-768 for key encapsulation, AES-256-GCM for payload encryption) with mandatory length-hiding padding.
+
+### 2. Publication (Witnessed)
+
+The artifact is immediately published to an independent, tamper-evident substrate—such as a blockchain, Certificate Transparency log, or witness cosigning network. This creates an immutable public record that the infrastructure cannot suppress or modify.
+
+Cost? For Ethereum mainnet: ~$0.03 per artifact individually, or ~$0.00003 per artifact when batched with Merkle roots.
+
+### 3. Disclosure (Authorized)
+
+At the designated time, the disclosure authority decrypts the payload using their private key. The authority is assumed semi-honest (honest-but-curious)—they decrypt correctly but we don't trust them not to look.
+
+### 4. Verification (Anyone)
+
+Now anyone can verify:
+- **Integrity**: The disclosed payload matches its original hash
+- **Authenticity**: The signature proves who submitted it
+- **Non-repudiation**: The submitter cannot deny authorship
+- **Pre-existence**: The artifact demonstrably existed before disclosure (via independent publication)
+- **Temporal ordering**: Hash chaining shows the relative order of submissions
+
+All of this verification happens **without trusting the infrastructure**. The cryptographic evidence speaks for itself.
+
+## Why This Matters: Real-World Applications
+
+### Coordinated Vulnerability Disclosure
+
+Security researchers submit vulnerability reports as CSVS artifacts. The platform stores them in blinded form—it literally cannot read them. When disclosure happens, anyone can verify the report wasn't modified, backdated, or suppressed.
+
+This addresses a long-standing trust problem in security research: researchers must choose between responsible disclosure (trusting a platform) and full disclosure (risking exploitation).
+
+### Regulatory Compliance
+
+Organizations submit financial disclosures, compliance attestations, or environmental reports as CSVS artifacts. The regulator's infrastructure cannot alter submissions, even under political pressure or compromise.
+
+When disclosure occurs, auditors and the public can verify documents weren't changed after submission—providing tamper-evident compliance without trusting the regulator's systems.
+
+### Research Integrity
+
+Scientists pre-register studies, commit to experimental protocols, or establish priority claims using CSVS. The commitments are public (blinded) immediately, preventing p-hacking or post-hoc hypothesis adjustment.
+
+Upon disclosure, peer reviewers can verify the research claims match the original submission—strengthening trust without centralized registries.
+
+### Incident Reporting
+
+Data breach notifications, safety incidents, or infrastructure failures submitted via CSVS provide cryptographic proof of timely reporting. Organizations can't quietly delay or suppress incident reports—any tampering is detectably.
+
+## The Technical Deep Dive
+
+For those interested in the cryptographic details:
+
+### Threat Model
+
+CSVS assumes:
+- **Fully malicious infrastructure**: Complete control over application logic, databases, storage, hosting—with full admin privileges
+- **Semi-honest authority**: Performs decryption correctly but may be curious (doesn't collude with submitters to forge artifacts)
+- **Computational bounds**: Adversary cannot break cryptographic primitives
+- **Authentic key distribution**: Submitters have the real authority public key (via out-of-band distribution, certificate pinning, transparency logs, or threshold schemes)
+
+### Security Properties
+
+CSVS provides formal guarantees:
+
+1. **Confidentiality / Backend Blindness**: Follows from IND-CCA security of ML-KEM, PRF security of HKDF, and IND-CCA security of AES-GCM. The advantage of any polynomial-time adversary is bounded by 2<sup>-128</sup> + negl(λ) — negligible in practice.
+
+2. **Integrity**: Payload modification detected via collision-resistant hashing (SHA3-256). Breaking integrity requires finding a SHA3-256 collision.
+
+3. **Authenticity & Non-Repudiation**: Digital signatures (ECDSA or ML-DSA) bind submitters to their transcripts. Forgery requires breaking EUF-CMA security.
+
+4. **Temporal Ordering**: Optimized hash chaining (hashing payload hashes instead of full payloads) provides state-transition integrity with ~0.4 µs overhead per link.
+
+5. **Context Binding**: Structured transcripts with AEAD Additional Authenticated Data prevent cross-protocol attacks and replay attacks.
+
+### The Padding Requirement
+
+A subtle but critical detail: ciphertext length in AES-GCM reveals plaintext size. A 1 KB vulnerability report produces a noticeably different artifact than a 100 KB report.
+
+CSVS mandates **client-side padding** to fixed block sizes (4 KB for typical payloads, 16 KB for large ones). The original length is stored in the transcript for unambiguous depadding after decryption.
+
+This eliminates metadata leakage while introducing negligible overhead (~0.1% computation, less than 4 KB average storage per artifact).
+
+### Performance
+
+Benchmarks on Apple M4 (1000 runs):
+
+| Payload Size | Generation | Verification |
+|--------------|------------|--------------|
+| 1 KB         | 2.0 ± 0.1 ms | 1.2 ± 0.0 ms |
+| 10 KB        | 2.1 ± 0.1 ms | 1.2 ± 0.0 ms |
+| 100 KB       | 2.2 ± 0.1 ms | 1.3 ± 0.0 ms |
+
+Generation time is dominated by key encapsulation (~1.5 ms for ECDH in the prototype; ML-KEM is faster at ~30 µs). Performance scales independently of payload size due to optimized hash chaining.
+
+## How CSVS Differs From Related Work
+
+### vs. Certificate Transparency (CT)
+
+CT uses append-only Merkle logs under a **semi-trusted operator model**. CSVS assumes **fully malicious infrastructure** and provides post-hoc verification without trusting logs.
+
+### vs. Commit-Reveal Schemes
+
+Traditional commit-reveal uses logical phases but doesn't guarantee backend blindness. CSVS uses **hybrid encryption by construction**—the infrastructure is cryptographically blind, not just logically separated.
+
+### vs. Verifiable Delay Functions (VDFs)
+
+VDFs enforce disclosure after computational delay with high overhead. CSVS provides **relative temporal ordering** with low overhead (~microseconds per link) but doesn't guarantee absolute time delays.
+
+### vs. Blockchain Commitments
+
+Blockchains provide public verifiability but typically don't include confidentiality mechanisms or structured verification protocols. CSVS can use blockchain anchoring (or other witness substrates) for witnessing, combined with hybrid encryption for confidentiality.
+
+The key distinction: CSVS is designed specifically for the **fully adversarial infrastructure** threat model, which is increasingly realistic given breach statistics and insider threats.
+
+## Limitations and Non-Goals
+
+CSVS is powerful but not a silver bullet:
+
+### What CSVS Doesn't Prevent
+
+- **Metadata leakage**: Submission timing, traffic patterns, and coarse-grained size information (despite padding) may leak
+- **Side-channel attacks**: Network-level analysis or timing attacks require separate mitigations
+- **Authority compromise**: If the authority's private key is compromised, all confidentiality is lost (mitigated by threshold authorities or forward-secure KEMs)
+- **Key substitution**: If the infrastructure can substitute the authority's public key undetected, Backend Blindness breaks (requires authentic key distribution)
+
+### Scalability Considerations
+
+For applications with millions of artifacts, hash chain verification scales O(n). Merkle tree variants can reduce this to O(log n) at the cost of protocol complexity.
+
+### The Authority Trust Assumption
+
+CSVS assumes a **semi-honest authority** that decrypts correctly. Modeling a fully malicious authority requires fundamentally different mechanisms (threshold decryption, distributed trust) and is outside the current scope.
+
+This is a deliberate design choice: many real-world scenarios have a natural disclosure authority (security coordinators, regulators, journal editors) where the infrastructure—not the authority—is the primary threat.
+
+## Getting Started
+
+I've released a complete reference implementation on GitHub with full test coverage. The repository includes:
+
+- Protocol specification and security proofs
+- Python implementation using the `cryptography` library
+- Benchmarks and attack simulations
+- Integration examples for vulnerability disclosure, regulatory filing, and research integrity use cases
+
+The paper is available on Zenodo (two versions published) and has been submitted to major security conferences.
+
+**Repository**: [Link to your GitHub]  
+**Paper (Zenodo)**: [Link to your Zenodo DOI]  
+**Contact**: rmontijuan@gmail.com
+
+## Why This Matters Now
+
+We're at an inflection point. Digital infrastructure mediates increasingly critical processes—financial systems, healthcare records, democratic institutions, scientific knowledge. The traditional security model—"trust but verify"—has been inverted to "verify because we can't trust."
+
+CSVS shows that high-stakes processes can rely on **cryptographic evidence instead of institutional trust**, even when the infrastructure is fully compromised. It's a shift from "securing the infrastructure" to "not needing to secure it."
+
+The question isn't whether we should stop trusting our infrastructure. History has already answered that. The question is: what do we build when we accept that the backend might be the adversary?
+
+CSVS is one answer. It demonstrates that verifiability and confidentiality need not rely on trusting operational infrastructure, even in adversarial deployment environments.
+
+The real work begins now: production deployments, user studies, real-world stress testing. If you're working on vulnerability disclosure platforms, regulatory systems, research registries, or any high-stakes digital process, I'd love to hear from you.
+
+Because the next breach isn't a matter of if—it's when. And when it happens, wouldn't you rather have systems that don't depend on trust in the first place?
+
+---
+
+**Juan Rodríguez Monti**  
+Independent Security Researcher  
+Junín, Buenos Aires, Argentina
+
+*Special thanks to the cryptography and security research communities for foundational work on commitment schemes, transparency mechanisms, and verifiable computation. This work builds on decades of research in applied cryptography.*
+
+---
+
+## Further Reading
+
+- Full paper: "Cryptographically Self-Verifying Systems: Backend-Blind Verifiability in Adversarial Environments" (January 2026)
+- Haber & Stornetta (1991): "How to time-stamp a digital document"
+- RFC 6962: Certificate Transparency
+- Boneh et al. (2018): "Verifiable Delay Functions"
+- NIST FIPS 203: ML-KEM (Module-Lattice-Based Key-Encapsulation Mechanism)
+
+## Comments and Discussion
+
+I'm actively seeking feedback, especially from:
+- Security researchers working on disclosure coordination
+- Cryptographers interested in applied protocol design
+- Platform operators considering trust-minimized architectures
+- Regulators and compliance professionals
+- Anyone building high-stakes digital systems
+
+Let's discuss in the comments or reach out directly. This is an evolving research area, and community input is invaluable.

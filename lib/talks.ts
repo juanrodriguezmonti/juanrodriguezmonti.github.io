@@ -17,6 +17,18 @@ export type Talk = z.infer<typeof talkSchema>
 
 const talks: Talk[] = [
   {
+    id: "nerdearla-2025-pentesting",
+    title: "Security from Code and Pentesting of Infrastructure, APIs and Web Applications",
+    description: "This talk introduces developers, DevOps experts, and relevant profiles such as managers to the fundamentals of pentesting and server and API protection.\n\nExplains what pentesting is in cloud and web environments and its importance, all illustrated with examples.\n\nIt covers common API vulnerabilities such as injection, broken authentication, OWASP10, and data exposure on Linux servers. It also analyzes situations involving reverse proxies such as Nginx, port management, and SSH hardening, and proposes agile solutions that can be implemented as efficiently as possible.\n\nIt introduces tools such as nmap, nikto, sqlmap, and Burp Suite, among many others, with live demos.\n\nIt offers mitigation practices: input validation, HTTPS, attack control, and CI/CD scanning.\n\nFocusing on the idea that security starts in development and ends in production, with practical demos and real-life cases, this talk can be useful for developers, cloud engineers, and managers interested in technical aspects.",
+    event: "Nerdearla 2025",
+    date: "2024-08-31",
+    location: "Buenos Aires, Argentina",
+    video: "https://www.youtube.com/watch?v=m9JVPpmNzOM",
+    slides: "",
+    tags: ["security", "pentesting", "owasp", "apis", "devops", "infrastructure"],
+    featured: true,
+  },
+  {
     id: "nerdearla-2024",
     title: "From Flask to FastAPI: A Journey to Better Performance and Scalability",
     description: "Join this talk to discover how I migrated from Flask to FastAPI and completely transformed a backend application to improve its performance and scalability. In this session, I'll share my experience and lessons learned during this migration process, from initial motivations to challenges and benefits obtained.\n\nWe'll start by exploring the limitations and issues I faced with Flask, and how these led me to consider FastAPI as an alternative. We'll look at the fundamental differences between Flask and FastAPI in terms of architecture, performance, and ease of use.\n\nThen, we'll dive into the migration process itself, covering how to migrate routes, manage dependencies, and configure middleware. We'll analyze how FastAPI facilitates the creation of fast and efficient APIs thanks to its integration with Pydantic and its native ability to handle asynchronicity.\n\nAdditionally, we'll discuss how the application's performance improved after the migration, including load tests and comparative benchmarks. I'll also talk about scalability and how FastAPI, combined with tools like Uvicorn and Docker, facilitates deployment and management in production environments.\n\nFinally, I'll share practical tips and best practices for those considering a similar migration. This talk is ideal for developers looking to modernize their backend applications, improve performance, and learn about the advantages of FastAPI over Flask.",
@@ -26,7 +38,7 @@ const talks: Talk[] = [
     video: "https://www.youtube.com/watch?v=1DybqRECfUM",
     slides: "/JuanRodriguezMonti-FromFlasktoFastAPI-rev1.0.pdf",
     tags: ["python", "fastapi", "flask", "backend", "performance", "migration"],
-    featured: true,
+    featured: false,
   },
   {
     id: "pycon-es-2016-events",

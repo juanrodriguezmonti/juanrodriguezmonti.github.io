@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Testing",
+    "sections": [
+      {
+        "title": "Test Setup",
+        "content": "Setting up the testing environment:\n\n```python\nfrom fastapi.testclient import TestClient\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker\nfrom sqlalchemy.pool import StaticPool\n\nfrom .database import Base, get_db\nfrom .main import app\n\nSQLALCHEMY_DATABASE_URL = \"sqlite://\"\n\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL,\n    connect_args={\"check_same_thread\": False},\n    poolclass=StaticPool,\n)\nTestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\nBase.metadata.create_all(bind=engine)\n\ndef override_get_db():\n    try:\n        db = TestingSessionLocal()\n        yield db\n    finally:\n        db.close()\n\napp.dependency_overrides[get_db] = override_get_db\n\nclient = TestClient(app)\n```"
+      },
+      {
+        "title": "Test Database Fixtures",
+        "content": "Creating test database fixtures:\n\n```python\nimport pytest\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker\nfrom sqlalchemy.pool import StaticPool\n\nfrom .database import Base\nfrom .main import app\nfrom .dependencies import get_db\n\n@pytest.fixture(scope=\"function\")\ndef db_session():\n    engine = create_engine(\n        \"sqlite://\",\n        connect_args={\"check_same_thread\": False},\n        poolclass=StaticPool,\n    )\n    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n    Base.metadata.create_all(bind=engine)\n    db = TestingSessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n        Base.metadata.drop_all(bind=engine)\n\n@pytest.fixture(scope=\"function\")\ndef client(db_session):\n    def override_get_db():\n        try:\n            yield db_session\n        finally:\n            db_session.close()\n    app.dependency_overrides[get_db] = override_get_db\n    with TestClient(app) as test_client:\n        yield test_client\n    app.dependency_overrides.clear()\n```"
+      },
+      {
+        "title": "API Tests",
+        "content": "Writing API tests:\n\n```python\nfrom fastapi.testclient import TestClient\nfrom .main import app\n\nclient = TestClient(app)\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"message\": \"Hello World\"}\n\ndef test_create_user():\n    response = client.post(\n        \"/users/\",\n        json={\"email\": \"test@example.com\", \"password\": \"testpassword\"}\n    )\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == \"test@example.com\"\n    assert \"id\" in data\n\ndef test_read_user():\n    response = client.get(\"/users/1\")\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == \"test@example.com\"\n\ndef test_read_nonexistent_user():\n    response = client.get(\"/users/999\")\n    assert response.status_code == 404\n```"
+      },
+      {
+        "title": "Integration Tests",
+        "content": "Writing integration tests:\n\n```python\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom sqlalchemy.orm import Session\n\nfrom . import crud, models, schemas\nfrom .database import Base, engine\n\ndef test_create_user_integration(client: TestClient, db: Session):\n    # Create user\n    user_data = {\"email\": \"test@example.com\", \"password\": \"testpassword\"}\n    response = client.post(\"/users/\", json=user_data)\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == user_data[\"email\"]\n    user_id = data[\"id\"]\n\n    # Create item for user\n    item_data = {\"title\": \"Test Item\", \"description\": \"Test Description\"}\n    response = client.post(f\"/users/{user_id}/items/\", json=item_data)\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"title\"] == item_data[\"title\"]\n    assert data[\"owner_id\"] == user_id\n\n    # Get user with items\n    response = client.get(f\"/users/{user_id}\")\n    assert response.status_code == 200\n    data = response.json()\n    assert len(data[\"items\"]) == 1\n    assert data[\"items\"][0][\"title\"] == item_data[\"title\"]\n```"
+      }
+    ]
+  },
+  "es": {
+    "title": "Pruebas",
+    "sections": [
+      {
+        "title": "Configuración de Pruebas",
+        "content": "Configurando el entorno de pruebas:\n\n```python\nfrom fastapi.testclient import TestClient\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker\nfrom sqlalchemy.pool import StaticPool\n\nfrom .database import Base, get_db\nfrom .main import app\n\nSQLALCHEMY_DATABASE_URL = \"sqlite://\"\n\nengine = create_engine(\n    SQLALCHEMY_DATABASE_URL,\n    connect_args={\"check_same_thread\": False},\n    poolclass=StaticPool,\n)\nTestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\nBase.metadata.create_all(bind=engine)\n\ndef override_get_db():\n    try:\n        db = TestingSessionLocal()\n        yield db\n    finally:\n        db.close()\n\napp.dependency_overrides[get_db] = override_get_db\n\nclient = TestClient(app)\n```"
+      },
+      {
+        "title": "Fixtures de Base de Datos de Prueba",
+        "content": "Creando fixtures de base de datos de prueba:\n\n```python\nimport pytest\nfrom sqlalchemy import create_engine\nfrom sqlalchemy.orm import sessionmaker\nfrom sqlalchemy.pool import StaticPool\n\nfrom .database import Base\nfrom .main import app\nfrom .dependencies import get_db\n\n@pytest.fixture(scope=\"function\")\ndef db_session():\n    engine = create_engine(\n        \"sqlite://\",\n        connect_args={\"check_same_thread\": False},\n        poolclass=StaticPool,\n    )\n    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n    Base.metadata.create_all(bind=engine)\n    db = TestingSessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n        Base.metadata.drop_all(bind=engine)\n\n@pytest.fixture(scope=\"function\")\ndef client(db_session):\n    def override_get_db():\n        try:\n            yield db_session\n        finally:\n            db_session.close()\n    app.dependency_overrides[get_db] = override_get_db\n    with TestClient(app) as test_client:\n        yield test_client\n    app.dependency_overrides.clear()\n```"
+      },
+      {
+        "title": "Pruebas de API",
+        "content": "Escribiendo pruebas de API:\n\n```python\nfrom fastapi.testclient import TestClient\nfrom .main import app\n\nclient = TestClient(app)\n\ndef test_read_main():\n    response = client.get(\"/\")\n    assert response.status_code == 200\n    assert response.json() == {\"message\": \"Hello World\"}\n\ndef test_create_user():\n    response = client.post(\n        \"/users/\",\n        json={\"email\": \"test@example.com\", \"password\": \"testpassword\"}\n    )\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == \"test@example.com\"\n    assert \"id\" in data\n\ndef test_read_user():\n    response = client.get(\"/users/1\")\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == \"test@example.com\"\n\ndef test_read_nonexistent_user():\n    response = client.get(\"/users/999\")\n    assert response.status_code == 404\n```"
+      },
+      {
+        "title": "Pruebas de Integración",
+        "content": "Escribiendo pruebas de integración:\n\n```python\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom sqlalchemy.orm import Session\n\nfrom . import crud, models, schemas\nfrom .database import Base, engine\n\ndef test_create_user_integration(client: TestClient, db: Session):\n    # Crear usuario\n    user_data = {\"email\": \"test@example.com\", \"password\": \"testpassword\"}\n    response = client.post(\"/users/\", json=user_data)\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"email\"] == user_data[\"email\"]\n    user_id = data[\"id\"]\n\n    # Crear item para usuario\n    item_data = {\"title\": \"Test Item\", \"description\": \"Test Description\"}\n    response = client.post(f\"/users/{user_id}/items/\", json=item_data)\n    assert response.status_code == 200\n    data = response.json()\n    assert data[\"title\"] == item_data[\"title\"]\n    assert data[\"owner_id\"] == user_id\n\n    # Obtener usuario con items\n    response = client.get(f\"/users/{user_id}\")\n    assert response.status_code == 200\n    data = response.json()\n    assert len(data[\"items\"]) == 1\n    assert data[\"items\"][0][\"title\"] == item_data[\"title\"]\n```"
+      }
+    ]
+  }
+}
