@@ -13,6 +13,7 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "Writing", href: "/writings" },
     { name: "Speaking", href: "/talks" },
+    { name: "Complex Systems at Scale", href: "/comple-systems-at-scale" },
     { name: "Cheatsheets", href: "/cheatsheets" },
     { name: "About", href: "/about" },
   ]

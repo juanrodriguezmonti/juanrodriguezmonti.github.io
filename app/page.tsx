@@ -17,14 +17,14 @@ export default async function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900 dark:text-white">
-              Engineering Leader · Cloud Native and Security Focused Architect · 20+ Years in Scalable Systems
+                Engineering Leader · Cloud Native and Security Focused Architect · 20+ Years in Scalable Systems
               </h1>
               <div className="flex items-center gap-3 mb-8">
                 <Building2 className="w-6 h-6 text-red-600" />
                 <span className="text-red-600 dark:text-red-400 font-medium">Currently working as Software Engineering Manager @ RELP</span>
               </div>
               <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-                20+ years leading high-impact engineering teams, driving cloud architecture, improving security, and delivering scalable
+                20+ years leading high-impact engineering teams, driving cloud architecture, improving security, and delivering
                 solutions. Committed to engineering best practices, secure development, and a strong Agile mindset to foster continuous
                 delivery and team autonomy.
               </p>
@@ -52,6 +52,44 @@ export default async function Home() {
                 className="profile-image"
                 priority
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Project: Complex Systems at Scale */}
+      <section className="py-16 border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="bg-gradient-to-r from-slate-900 to-gray-800 text-white rounded-2xl overflow-hidden shadow-xl">
+            <div className="grid md:grid-cols-3 gap-0 items-center">
+              <div className="md:col-span-1 p-6 md:p-8 flex justify-center">
+                <Image
+                  src="/complex.png"
+                  alt="Complex Systems at Scale book cover"
+                  width={280}
+                  height={380}
+                  className="rounded-lg shadow-2xl border border-white/20"
+                />
+              </div>
+              <div className="md:col-span-2 p-8 md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-wide text-red-300 mb-3">New Project</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Complex Systems at Scale</h2>
+                <p className="text-gray-200 mb-6 leading-relaxed">
+                  Building Critical and Secure Software with Next.js, FastAPI, and AWS. A complete practitioner guide from
+                  early architecture decisions to production security and AI-native systems.
+                </p>
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <span className="bg-white/10 px-3 py-1 rounded-full text-sm">18 Chapters</span>
+                  <span className="bg-white/10 px-3 py-1 rounded-full text-sm">5 Parts</span>
+                  <span className="bg-white/10 px-3 py-1 rounded-full text-sm">Security + AI + Scale</span>
+                </div>
+                <Link
+                  href="/comple-systems-at-scale"
+                  className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 font-medium"
+                >
+                  Explore the full syllabus <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
