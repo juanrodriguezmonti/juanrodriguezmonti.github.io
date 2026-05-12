@@ -45,7 +45,7 @@ export default async function Home() {
             </div>
             <div className="hidden md:block">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/juanitalia-GzqfGetOvoJ9T1geth8cRYnNA5jDEU.png"
+                src="/Juan.jpeg"
                 alt="Juan Rodriguez Monti"
                 width={500}
                 height={500}
